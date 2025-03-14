@@ -24,7 +24,7 @@ public boolean isNew(T entity) {
     BeanWrapper wrapper = new DirectFieldAccessFallbackBeanWrapper(entity);
 
     return versionAttribute.map(it -> wrapper.getPropertyValue(it.getName()) == null).orElse(true);
-
+}
 ```
 
 - Entity가 새로운 지 여부는 `JpaEntityInformation`의 `isNew(T entity)` 메서드를 통해 판단이 된다.
