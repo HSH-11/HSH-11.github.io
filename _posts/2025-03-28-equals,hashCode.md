@@ -1,8 +1,8 @@
 ---
 layout: single
 title:  "equlas와hashCode"
-categories: JAVA
-tag: [OS, Interview]
+categories: Java
+tag: [Java, Interview]
 toc: true
 toc_sticky: true
 toc_label: 목차
