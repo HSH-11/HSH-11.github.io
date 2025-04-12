@@ -2,7 +2,7 @@
 layout: single
 title: "엔티티 매니저는 어떤 역할을 할까?"
 categories: BackEnd
-tag: [BackeEnd, Interview, JPA, Entity]
+tag: [BackEnd, Interview, JPA, Entity]
 toc: true
 toc_sticky: true
 toc_label: 목차
