@@ -3,7 +3,7 @@ layout: post
 title:  "Thread,Process,Core"
 tag: [OS, Interview]
 description: 스레드,프로세스,코어의 수는 많을수록 좋을까요?
-image: '/images/33.jpg'
+image: '/images/2025-04-12-thread_process_core/main.png'
 tags_color: '#ff4500'
 ---
 
@@ -23,4 +23,3 @@ tags_color: '#ff4500'
 ## 코어가 많으면?
 
 많은 코어를 가진 CPU는 병렬 처리 성능을 향상시킬 수 있지만, 이를 최대한 활용하기 위해서는 소프트웨어가 멀티코어 환경에 최적화되어 있어야 합니다. 단일 스레드 작업이 주를 이루는 경우, 추가 코어의 이점을 제대로 활용하지 못할 수 있습니다. 또한, **코어 수가 많아질수록 CPU의 비용과 전력 소비가 증가할 수 있으며, 발열 관리도 더 복잡**해집니다.
-

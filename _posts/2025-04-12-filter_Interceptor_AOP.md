@@ -3,8 +3,8 @@ layout: post
 title:  "Filter,Interceptor,AOP"
 tag: [Spring, BackEnd]
 description: Filter와Interceptor의 개념 및 차이
-image: '/images/32.jpg'
-tags_color: '#ff4500'
+image: '/images/2025-04-12-filter_Interceptor_AOP/Filter_Interceptor_AOP.png'
+tags_color: '#3CA03C'
 ---
 
 
@@ -45,25 +45,25 @@ public interface Filter {
     public default void destroy() {}
 ```
 
-1. init()
+1.init()
 
-   **필터 객체를 초기화하고 서비스에 추가하기 위한 메소드**이다.
+**필터 객체를 초기화하고 서비스에 추가하기 위한 메소드**이다.
 
-   웹 컨테이너가 1회 init()을 호출하여 필터 객체를 초기화하면 이후 요청들은 doFilter()를 통해 처리된다.
+웹 컨테이너가 1회 init()을 호출하여 필터 객체를 초기화하면 이후 요청들은 doFilter()를 통해 처리된다.
 
-2. doFilter()
+2.doFilter()
 
-   url-pattern에 맞는 모든 **HTTP 요청이 Dispatcher Servlet으로 전달되기 전에 웹 컨테이너에 의해 실행되는 메소드**이다.
+url-pattern에 맞는 모든 **HTTP 요청이 Dispatcher Servlet으로 전달되기 전에 웹 컨테이너에 의해 실행되는 메소드**이다.
 
-   doFilter의 파라미터로 FilterChain이 있는데, FilterChain의 doFilter를 통해 다음 대상으로 요청을 전달할 수 있게 된다.
+doFilter의 파라미터로 FilterChain이 있는데, FilterChain의 doFilter를 통해 다음 대상으로 요청을 전달할 수 있게 된다.
 
-   chain.doFilter()로 전,후에 우리가 필요한 처리 과정을 넣어줌으로써 원하는 처리를 진행할 수 있다.
+chain.doFilter()로 전,후에 우리가 필요한 처리 과정을 넣어줌으로써 원하는 처리를 진행할 수 있다.
 
-3. destroy()
+3.destroy()
 
-   **필터 객체를 제거하고 사용하는 자원을 반환하기 위한 메소드**이다.
+**필터 객체를 제거하고 사용하는 자원을 반환하기 위한 메소드**이다.
 
-   웹 컨테이너가 1회 destroy()를 호출하여 필터 객체를 종료하면 이후에는 doFilter에 의해 처리되지 않는다.
+웹 컨테이너가 1회 destroy()를 호출하여 필터 객체를 종료하면 이후에는 doFilter에 의해 처리되지 않는다.
 
 ## Interceptor
 
@@ -107,14 +107,20 @@ preHandle()
 - Controller가 호출되기 전에 실행된다.
 - 컨트롤러 이전에 처리해야 하는 전처리 작업이나 요청 정보를 가공하거나 추가하는 경우에 사용할 수 있다. 
 
+------
+
 postHandle()
 
 - Controller가 호출된 후에 실행된다. 
 - (View 렌더링 전)컨트롤러 이후에 처리해야 하는 후처리 작업이 있을 때 사용할 수 있다. 이 메소드는 컨트롤러가 반환하는 ModelAndView 타입의 정보가 제공되는데, 최근에는 JSON 형태로 데이터를 제공하는 RestAPI 기반의 컨트롤러(@RestController)를 만들면서 자주 사용되지 않는다. 
 
+------
+
 afterCompletion()
 
 - 모든 뷰에서 최종 결과를 생성하는 일을 포함해 모든 작업이 완료된 후에 실행된다. (View 렌더링 후)요청 처리 중에 사용한 리소스를 반환할 때 사용할 수 있다. 
+
+------
 
 ### 인터셉터(Interceptor)와 AOP 비교
 
@@ -167,11 +173,10 @@ public class MyInterceptor implements HandlerInterceptor {
 
 필터(Filter)
 
--  보안 및 인증/인가 관련 작업
-
--  모든 요청에 대한 로깅 또는 검사
--  이미지/데이터 압축 및 문자열 인코딩
--  Spring과 분리되어야 하는 기능
+- 보안 및 인증/인가 관련 작업
+- 모든 요청에 대한 로깅 또는 검사
+- 이미지/데이터 압축 및 문자열 인코딩
+- Spring과 분리되어야 하는 기능
 
 필터는 기본적으로 스프링과 무관하게 전역적으로 처리해야 하는 작업들을 처리할 수 있다. 
 
@@ -183,10 +188,9 @@ public class MyInterceptor implements HandlerInterceptor {
 
 인터셉터(Interceptor)
 
--  세부적인 보안 및 인증/인가 공통 작업
-
--  API 호출에 대한 로깅 또는 검사
--  Controller로 넘겨주는 정보(데이터)의 가공
+- 세부적인 보안 및 인증/인가 공통 작업
+- API 호출에 대한 로깅 또는 검사
+- Controller로 넘겨주는 정보(데이터)의 가공
 
 인터셉터에서는 클라이언트의 요청과 관련되어 전역적으로 처리해야 하는 작업들을 처리할 수 있다. 
 

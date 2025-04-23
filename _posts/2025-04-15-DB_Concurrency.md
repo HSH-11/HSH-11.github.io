@@ -3,8 +3,8 @@ layout: post
 title:  "데이터베이스 시스템 동시성 제어"
 tag: [DataBase, Interview]
 description: DB 동시성 제어 방법
-image: '/images/20.jpg'
-tags_color: '#00a400'
+image: '/images/2025-04-15-DB_Concurrency/main.jpg'
+tags_color: '#aa1eaa'
 ---
 
 

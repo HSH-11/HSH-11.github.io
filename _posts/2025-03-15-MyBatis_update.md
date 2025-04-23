@@ -5,6 +5,7 @@ layout: post
 description: MyBatis 동작방식 정리
 image: '/images/29.jpg'
 tags_color: '#3eb99a'
+featured: true
 ---
 
 

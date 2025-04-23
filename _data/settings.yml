@@ -28,12 +28,10 @@ menu_settings:
       url: "/videos/"
     - title: "Archive"
       url: "/archive/"
+    - title: "About"
+      url: "/about/"
     - title: "Pages"
       submenu:
-        - url: "/about/"
-          title: "About"
-        - url: "/contact/"
-          title: "Contact"
         - url: "/elements/"
           title: "Elements"
 
@@ -78,7 +76,7 @@ logos:
 # Section Blog Settings
 blog:
   enable: true
-  blog_title: The Binary Journal
+  blog_title: The Posts
 
 #-------------------------------
 # Tags Section Settings
@@ -87,7 +85,7 @@ tags_section:
   tags_section_title: HSH’s Haven
   tags:
     - tag: "Spring"
-      image: "/images/20.jpg"
+      image: "/images/Spring.png"
     - tag: "DataBase"
       image: "/images/21.jpg"
     - tag: "Web"

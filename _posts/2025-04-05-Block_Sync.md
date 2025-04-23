@@ -1,10 +1,11 @@
 ---
 layout: post
 title: "Blocking,Non-Blocking과Sync,Async"
-tag: [Network, Interview, Spring]
+tag: [Network, Interview, OS]
 description: 블로킹,논블로킹,동기,비동기 개념 및 조합
-image: '/images/08.jpg'
-tags_color: '#ff4500'
+image: '/images/2025-04-05-Block_Sync/gird.png'
+tags_color: '#FF46C5'
+featured: true
 ---
 
 # 시작하기에 앞서
@@ -16,6 +17,8 @@ Block과Non-block,sync와async 개념을 이해하기 위해서는 다음의 두
   - 제어권을 가진 함수는 자신의 코드를 끝까지 실행한 후, 자신을 호출한 함수에게 돌려줍니다.
 - 결과값을 기다린다는 것
   - A함수에서 B함수를 호출했을 때, A함수가 B함수의 결과값을 기다리는 지의 여부를 의미합니다.
+
+------
 
 ## Blocking과 Non-Blocking
 
@@ -40,6 +43,8 @@ Blocking과 Non-blocking은 A함수가 B함수를 호출했을 때, 제어권을
 1. A함수가 B함수를 호출하면, B함수는 실행되지만, 제어권은 A함수가 그대로 가지고 있습니다.(A함수가 B함수를 호출하는 순간에만 B함수가 제어권을 가지거 자신을 실행시킨 후 거의 즉시 자신을 호출한 A함수에게 제어권을 돌려주는 방식)
 2. A함수는 계속 제어권을 가지고 있기 때문에 B함수를 호출한 이후에도 자신의 코드를 계속 실행합니다.
 
+------
+
 ## Synchronous와 Asynchronous
 
 동기와 비동기의 차이는 **호출되는 함수의 작업 완료 여부를 신경쓰는 지 여부**의 차이입니다.
@@ -53,6 +58,8 @@ Blocking과 Non-blocking은 A함수가 B함수를 호출했을 때, 제어권을
 함수A가 함수B를 호출할 때 **콜백 함수를 함께 전달**해서, 함수 B의 작업이 완료되면 함께 보낸 콜백 함수를 실행합니다.
 
 함수A는 함수B를 호출한 후로 **함수 B의 작업 완료 여부에는 신경을 쓰지 않습니다.**
+
+------
 
 ## 블로킹과 논블로킹, 동기와 비동기 비교
 

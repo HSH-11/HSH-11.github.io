@@ -2,7 +2,7 @@
 layout: page
 title: About Me
 permalink: /about/
-image: '/images/01-2.jpg'
+image: "/images/07.jpg"
 ---
 
 Hey, I’m Alex - part developer, part digital explorer, and full-time lover of all things tech. From crafting lines of code on Linux to unraveling the layers of cybersecurity, my passion for technology goes beyond just a career.
@@ -29,16 +29,16 @@ Linux was a turning point. Once I got into Linux, I realized how transformative 
 Gaming is another integral part of my story. Growing up with video games, I’ve seen firsthand how gaming has evolved from simple pixelated platforms to immersive, narrative-driven experiences. My love for gaming goes beyond just playing; I enjoy analyzing game mechanics, studying character design, and understanding the technology behind these virtual worlds. Indie games hold a special place in my heart because they represent the creativity and innovation of small teams that pour their souls into making something unique.
 
 ```js
-  $('.top').click(function () {
-    $('html, body').stop().animate({ scrollTop: 0 }, 'slow', 'swing');
-  });
-  $(window).scroll(function () {
-    if ($(this).scrollTop() > $(window).height()) {
-      $('.top').addClass("top-active");
-    } else {
-      $('.top').removeClass("top-active");
-    };
-  });
+$(".top").click(function () {
+  $("html, body").stop().animate({ scrollTop: 0 }, "slow", "swing");
+});
+$(window).scroll(function () {
+  if ($(this).scrollTop() > $(window).height()) {
+    $(".top").addClass("top-active");
+  } else {
+    $(".top").removeClass("top-active");
+  }
+});
 ```
 
 When I’m not coding or gaming, I’m diving into the world of comics and sci-fi movies. Both are more than hobbies—they’re ways to explore the “what ifs” of life. Comics taught me that even fictional heroes have real struggles, and sci-fi movies sparked my imagination about the future.
@@ -48,7 +48,7 @@ When I’m not coding or gaming, I’m diving into the world of comics and sci-f
 Building this blog has been a passion project. It’s a place where I can share my journey, document what I learn, and connect with people who have the same interests. I’ve written countless tutorials, tech tips, and reviews because I want to create a resource I wish I had when I was starting out. The tech world can be intimidating, but it doesn’t have to be. Thоrough this blog, I hope to make technology accessible, fun, and rewarding for people of all skill levels.
 
 ![Keyboard]({{site.baseurl}}/images/01-3.jpg)
-*Photo by [Pablo Stanley](https://www.lummi.ai/photo/contemplative-technicolor-workstation-sonrb) on [Lummi](https://www.lummi.ai/)*
+_Photo by [Pablo Stanley](https://www.lummi.ai/photo/contemplative-technicolor-workstation-sonrb) on [Lummi](https://www.lummi.ai/)_
 
 Looking back, I see that each step in my journey—whether it was installing my first Linux distro, debugging my first program, or exploring cybersecurity—has shaped me into who I am today.
 
