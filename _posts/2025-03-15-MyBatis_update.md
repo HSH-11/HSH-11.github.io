@@ -1,12 +1,10 @@
 ---
-layout: single
 title:  "MyBatis의 update는 왜 int를 반환할까?"
-categories: BackEnd
 tag: [MyBatis, BackEnd]
-toc: true
-toc_sticky: true
-toc_label: 목차
-author_profile: false
+layout: post
+description: MyBatis 동작방식 정리
+image: '/images/29.jpg'
+tags_color: '#3eb99a'
 ---
 
 

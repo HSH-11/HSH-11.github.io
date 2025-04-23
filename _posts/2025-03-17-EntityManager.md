@@ -1,12 +1,10 @@
 ---
-layout: single
 title: "엔티티 매니저는 어떤 역할을 할까?"
-categories: BackEnd
-tag: [BackEnd, Interview, JPA, Entity]
-toc: true
-toc_sticky: true
-toc_label: 목차
-author_profile: false
+tag: [BackEnd, Interview, JPA]
+layout: post
+description: 엔티티 매니저 역할 정리
+image: '/images/32.jpg'
+tags_color: '#4643ec'
 ---
 
 ## 엔티티 매니저에 대해 설명해주세요.

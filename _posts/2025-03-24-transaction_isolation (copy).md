@@ -1,12 +1,10 @@
 ---
-layout: single
+layout: post
 title:  "트랜잭션 격리수준"
-categories: DataBase
 tag: [DataBase, Interview]
-toc: true
-toc_sticky: true
-toc_label: 목차
-author_profile: false
+description: 트랜잭션 격리수준은 무엇인가요?
+image: '/images/29.jpg'
+tags_color: '#3eb99a'
 ---
 
 

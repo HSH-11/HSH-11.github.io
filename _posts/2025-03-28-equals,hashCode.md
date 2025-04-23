@@ -1,15 +1,11 @@
 ---
-layout: single
+layout: post
 title:  "equlas와hashCode"
-categories: Java
 tag: [Java, Interview]
-toc: true
-toc_sticky: true
-toc_label: 목차
-author_profile: false
+description: equals와 hashCode는 왜 함께 재정의해야 할까요?
+image: '/images/23.jpg'
+tags_color: '#3eb99a'
 ---
-
-
 
 # equals와 hashCode는 왜 함께 재정의해야 할까요?
 

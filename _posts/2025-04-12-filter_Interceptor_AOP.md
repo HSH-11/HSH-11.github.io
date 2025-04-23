@@ -1,12 +1,10 @@
 ---
-layout: single
+layout: post
 title:  "Filter,Interceptor,AOP"
-categories: Spring
 tag: [Spring, BackEnd]
-toc: true
-toc_sticky: true
-toc_label: 목차
-author_profile: false
+description: Filter와Interceptor의 개념 및 차이
+image: '/images/32.jpg'
+tags_color: '#ff4500'
 ---
 
 

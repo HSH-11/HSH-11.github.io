@@ -1,12 +1,10 @@
 ---
-layout: single
+layout: post
 title:  "Spring Bean Annotations"
-categories: Spring
+description: "@Component, @Controller, @Service, @Repository의 차이점"
 tag: [Spring, Interview]
-toc: true
-toc_sticky: true
-toc_label: 목차
-author_profile: false
+image: '/images/04.jpg'
+tags_color: '#4643ec'
 ---
 
 # @Component, @Controller, @Service, @Repository의 차이점에 대해서 설명해주세요.

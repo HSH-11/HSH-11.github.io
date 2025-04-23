@@ -1,12 +1,10 @@
 ---
-layout: single
+layout: post
 title: "Checked,Unchecked Exception"
-categories: Java
 tag: [Java, Interview]
-toc: true
-toc_sticky: true
-toc_label: 목차
-author_profile: false
+description: Checked Exception과 Unchecked Exception에 대해서 설명해주세요.
+image: '/images/101.jpg'
+tags_color: '#4643ec'
 ---
 
 ## Checked Exception과 Unchecked Exception에 대해서 설명해주세요.

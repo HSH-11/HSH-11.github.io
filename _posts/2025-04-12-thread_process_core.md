@@ -1,12 +1,10 @@
 ---
-layout: single
+layout: post
 title:  "Thread,Process,Core"
-categories: OS
 tag: [OS, Interview]
-toc: true
-toc_sticky: true
-toc_label: 목차
-author_profile: false
+description: 스레드,프로세스,코어의 수는 많을수록 좋을까요?
+image: '/images/33.jpg'
+tags_color: '#ff4500'
 ---
 
 

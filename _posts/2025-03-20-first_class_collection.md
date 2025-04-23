@@ -1,12 +1,10 @@
 ---
-layout: single
+layout: post
 title: "일급 컬렉션"
-categories: Java
 tag: [Java, Interview]
-toc: true
-toc_sticky: true
-toc_label: 목차
-author_profile: false
+description: 일급 컬렉션이 무엇인가요?
+image: '/images/104.jpg'
+tags_color: '#3eb99a'
 ---
 
 # 일급 컬렉션이 무엇인가요?

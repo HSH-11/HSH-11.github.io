@@ -1,12 +1,11 @@
 ---
-layout: single
+layout: post
 title:  "브라우저는 어떻게 동작하는가"
 categories: Web
 tag: [Web, Interview, Network]
-toc: true
-toc_sticky: true
-toc_label: 목차
-author_profile: false
+description: 웹 서버와 WAS의 차이점은 무엇일까?
+image: '/images/11.jpg'
+tags_color: '#4643ec'
 ---
 
 

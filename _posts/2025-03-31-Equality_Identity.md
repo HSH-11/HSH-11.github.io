@@ -1,12 +1,10 @@
 ---
-layout: single
+layout: post
 title:  "자바의 동일성 동등성 이해하기"
-categories: Java
 tag: [Java, Interview]
-toc: true
-toc_sticky: true
-toc_label: 목차
-author_profile: false
+description: 동일성과 동등성에 대해서 설명해주세요.
+image: '/images/22.jpg'
+tags_color: '#3eb99a'
 ---
 
 

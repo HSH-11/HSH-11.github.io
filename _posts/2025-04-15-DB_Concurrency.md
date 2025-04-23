@@ -1,12 +1,10 @@
 ---
-layout: single
+layout: post
 title:  "데이터베이스 시스템 동시성 제어"
-categories: DataBase
 tag: [DataBase, Interview]
-toc: true
-toc_sticky: true
-toc_label: 목차
-author_profile: false
+description: DB 동시성 제어 방법
+image: '/images/20.jpg'
+tags_color: '#00a400'
 ---
 
 

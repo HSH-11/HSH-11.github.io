@@ -1,12 +1,10 @@
 ---
-layout: single
+layout: post
 title: "Blocking,Non-Blocking과Sync,Async"
-categories: Network
 tag: [Network, Interview, Spring]
-toc: true
-toc_sticky: true
-toc_label: 목차
-author_profile: false
+description: 블로킹,논블로킹,동기,비동기 개념 및 조합
+image: '/images/08.jpg'
+tags_color: '#ff4500'
 ---
 
 # 시작하기에 앞서

@@ -1,12 +1,10 @@
 ---
-layout: single
 title:  "Spring Data JPA에서 새로운 Entity인지 판단하는 방법"
-categories: Spring
-tag: [JPA, Interview, Entity]
-toc: true
-toc_sticky: true
-toc_label: 목차
-author_profile: false
+tag: [Spring, JPA, Interview]
+layout: post
+description: Entity의 새로운 여부 판단 정리
+image: '/images/05.jpg'
+tags_color: '#ff4500'
 ---
 
 

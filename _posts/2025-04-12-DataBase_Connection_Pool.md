@@ -1,12 +1,10 @@
 ---
-layout: single
+layout: post
 title:  "DB Connection Pool"
-categories: DataBase
 tag: [DataBase, Interview]
-toc: true
-toc_sticky: true
-toc_label: 목차
-author_profile: false
+description: 데이터베이스 커넥션 풀(Connection Pool)을 사용하지 않으면 어떤 문제가 발생할 수 있나요?
+image: '/images/15.jpg'
+tags_color: '#4643ec'
 ---
 
 ## 데이터베이스 커넥션 풀(Connection Pool)을 사용하지 않으면 어떤 문제가 발생할 수 있나요?
