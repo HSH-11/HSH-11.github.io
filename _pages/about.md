@@ -5,7 +5,7 @@ permalink: /about/
 image: "/images/07.jpg"
 ---
 
-Hey, I’m Alex - part developer, part digital explorer, and full-time lover of all things tech. From crafting lines of code on Linux to unraveling the layers of cybersecurity, my passion for technology goes beyond just a career.
+Hey, I’m Seunghyun - Web developer and full-time lover of all things tech. 
 
 {: .note }
 Even the most experienced developers don't know everything
