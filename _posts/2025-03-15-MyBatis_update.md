@@ -3,12 +3,10 @@ title:  "MyBatis의 update는 왜 int를 반환할까?"
 tag: [MyBatis, BackEnd]
 layout: post
 description: MyBatis 동작방식 정리
-image: '/images/29.jpg'
+image: '/images/2025-03-15-MyBatis_update/img.png'
 tags_color: '#3eb99a'
 featured: true
 ---
-
-
 
 ## MyBatis @Mapper와 @Update Annotation 동작 방식 정리
 

@@ -3,7 +3,7 @@ layout: post
 title:  "Spring Bean Annotations"
 description: "@Component, @Controller, @Service, @Repository의 차이점"
 tag: [Spring, Interview]
-image: '/images/04.jpg'
+image: '/images/2025-04-01-Bean_annotation/main.png'
 tags_color: '#4643ec'
 ---
 
