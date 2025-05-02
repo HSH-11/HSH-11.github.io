@@ -3,10 +3,9 @@ layout: post
 title:  "자바의 동일성 동등성 이해하기"
 tag: [Java, Interview]
 description: 동일성과 동등성에 대해서 설명해주세요.
-image: '/images/22.jpg'
+image: '/images/2025-03-31-Equality_Identity/main.png'
 tags_color: '#3eb99a'
 ---
-
 
 # 동일성과 동등성에 대해서 설명해주세요.
 
