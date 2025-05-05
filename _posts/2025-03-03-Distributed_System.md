@@ -1,7 +1,7 @@
 ---
 title:  "분산시스템_Consistent Hashing"
 categories: BackEnd
-tag: [Distributed_system]
+tag: [BackEnd]
 layout: post
 description: Consistent Hashing의 원리와 적용 사례
 image: '/images/06.jpg'
