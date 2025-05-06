@@ -3,10 +3,9 @@ layout: post
 title:  "트랜잭션 격리수준"
 tag: [DataBase, Interview]
 description: 트랜잭션 격리수준은 무엇인가요?
-image: '/images/29.jpg'
+image: '/images/2025-03-24-transaction_isolation/main.png'
 tags_color: '#3eb99a'
 ---
-
 
 # 트랜잭션 격리수준은 무엇인가요?
 
