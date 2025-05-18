@@ -4,7 +4,7 @@ categories: BackEnd
 tag: [BackEnd]
 layout: post
 description: Consistent Hashing의 원리와 적용 사례
-image: '/images/06.jpg'
+image: '/images/2025-03-03-Distributed_System/Mapping-in-the-hashing.jpg'
 tags_color: '#f14979'
 ---
 

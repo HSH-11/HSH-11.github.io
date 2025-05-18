@@ -5,6 +5,7 @@ description: 데이터베이스를 확장하는 데는 여러 가지 방법이 �
 image: "/images/2025-04-30-Replication-Clustering/scalingMethods.jpeg"
 tags: [DataBase]
 tags_color: "#3eb99a"
+toc: true
 ---
 
 # 일반적인 데이터베이스 구조
@@ -19,7 +20,7 @@ tags_color: "#3eb99a"
 
 이렇게 서버를 하나가 아닌 여러 개로 구성하는 것을 <span style="color:orange">Clustering</span>이라한다.
 
-# Clustering이란?
+## Clustering이란?
 
 동일한 데이터베이스를 여러 대의 서버가 관리하도록 클러스터를 구축하는 것을 말한다.
 
@@ -40,7 +41,7 @@ DB 클러스터링은 <span style="color:red">동기 방식으로 서버들 간�
 
 ---
 
-## <span style="color:green">Active - Active Clustering</span>
+### <span style="color:green">Active - Active Clustering</span>
 
 <br>
 
@@ -54,7 +55,7 @@ DB 클러스터링은 <span style="color:red">동기 방식으로 서버들 간�
 
 ---
 
-## <span style="color:green">Active - StandBy Clustering</span>
+### <span style="color:green">Active - StandBy Clustering</span>
 
 <br>
 
@@ -72,7 +73,7 @@ DB 클러스터링은 <span style="color:red">동기 방식으로 서버들 간�
 
 ---
 
-# Replication이란?
+## Replication이란?
 
 데이터베이스 스토리지를 복제하는 것을 의미한다.
 
@@ -160,7 +161,7 @@ Master 서버는 다중 스레드로 쓰기 작업을 수행하는 반면, Slave
 
 이러한 과정은 주로 Binary log를 기반으로 이루어지며, Binary log는 Master 서버에서 실행된 모든 데이터 변경 쿼리를 기록하는 역할을 한다. MySQL에서는 이 Binary log를 저장하는 방식으로 **Row**, **Statement**, **Mixed**의 세 가지 방식을 제공하며, 각 방식은 고유한 장단점을 가지고 있다.
 
-## Row
+### Row
 
 **Row** 방식은 데이터베이스의 각 행별로 변경된 내용을 정확히 기록한다.
 
@@ -168,13 +169,13 @@ Master 서버는 다중 스레드로 쓰기 작업을 수행하는 반면, Slave
 
 그러나 모든 행의 변경 사항을 저장하기 때문에 Binary log 파일의 크기가 급격히 증가할 수 있어 저장 공간에 부담을 줄 수 있는 단점이 존재한다.
 
-## Statement
+### Statement
 
 반면에 **Statement** 방식은 데이터 변경을 일으킨 SQL 문 자체를 Binary log에 기록한다.
 
 이 방식은 로그 파일의 크기를 상대적으로 작게 유지할 수 있어 저장 공간을 절약할 수 있는 장점이 있다. 하지만 실행할 때마다 다른 값을 반환하는 함수와 같이 비확정적(non-deterministic) SQL 쿼리가 실행될 경우, 동일한 쿼리가 Master와 Slave 서버에서 다른 결과를 초래할 수 있어 데이터 불일치 문제가 발생할 수 있다. 예를 들어, SELECT NOW()와 같은 함수는 실행 시점에 따라 다른 결과를 반환할 수 있기 때문에, 이를 포함한 쿼리는 복제 시 문제가 될 수 있다.
 
-## Mixed
+### Mixed
 
 이러한 문제를 보완하기 위해 MySQL은 **Mixed** 방식을 제공한다. Mixed 방식은 상황에 따라 row 기반과 statement 기반을 혼합하여 로그를 기록한다. 비확정적 SQL이 아닌 경우에는 statement 방식을 사용하여 저장 공간을 절약하고, 비확정적 SQL이 실행되는 경우에는 row 방식을 사용하여 데이터 일관성을 유지한다. 이를 통해 두 방식의 장점을 모두 활용할 수 있으며, 데이터 불일치 문제를 최소화할 수 있다. 다만, 구현이 다소 복잡할 수 있다는 단점이 존재한다.
 
@@ -190,7 +191,7 @@ Replay log는 Slave 서버에서 Master 서버의 Binary log를 저장하는 임
 
 ---
 
-# ✔️ 내용 정리
+## ✔️ 내용 정리
 
 **Clustering**은 동일한 데이터를 여러 DB 서버가 **동기 방식**으로 공유하여 하나의 논리적 DB처럼 작동하는 구조이다.
 
