@@ -206,6 +206,17 @@
 .page {
   color: var(--text-color);
 
+  h2:target::before,
+  h3:target::before,
+  h4:target::before,
+  h5:target::before,
+  h6:target::before {
+    content: "";
+    display: block;
+    height: 100px;
+    margin-top: -80px;
+  }
+
   a:not([class]) {
     font-weight: 500;
     border-bottom: 1px solid var(--border-alt-color);
@@ -266,6 +277,49 @@
     img, .js-reframe {
       border-radius: 12px;
       overflow: hidden;
+    }
+  }
+}
+
+/* Toc */
+.post__toc,
+.page__toc {
+  padding: 32px;
+  margin-bottom: 32px;
+  border-radius: 8px;
+  background: var(--background-alt-color-2);
+
+  .post__toc__title,
+  .page__toc__title {
+    margin-bottom: 24px;
+    padding-bottom: 8px;
+    font-size: 20px;
+    line-height: 1.2;
+    border-bottom: 1px solid var(--border-alt-color);
+  }
+
+  .post__toc__list,
+  .page__toc__list {
+    margin-bottom: 0;
+    padding-left: 4px;
+    font-family: $base-font-family;
+    color: var(--text-alt-color);
+
+    li {
+      margin-bottom: 16px;
+      font-size: 16px;
+      line-height: 1.2;
+      font-weight: 500;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      &>ul,
+      ol {
+        margin-top: 8px;
+        padding-left: 16px;
+      }
     }
   }
 }
