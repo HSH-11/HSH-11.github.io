@@ -3,7 +3,7 @@ layout: post
 title: "일급 컬렉션"
 tag: [Java, Interview]
 description: 일급 컬렉션이 무엇인가요?
-image: '/images/104.jpg'
+image: '/images/2025-03-20-first_class_collection/first_class_collection.png'
 tags_color: '#3eb99a'
 ---
 

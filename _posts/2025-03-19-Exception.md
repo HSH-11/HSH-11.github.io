@@ -3,7 +3,7 @@ layout: post
 title: "Checked,Unchecked Exception"
 tag: [Java, Interview]
 description: Checked Exception과 Unchecked Exception에 대해서 설명해주세요.
-image: '/images/101.jpg'
+image: '/images/2025-03-19-Exception/Checked-and-Unchecked-exceptions-in-jaa.jpg'
 tags_color: '#4643ec'
 ---
 
@@ -40,6 +40,8 @@ Unchecked Exception은 **런타임 시점에 발생**하는 예외로, 컴파일
 - `ArithmeticException` (0으로 나누기)
 - `IllegalArgumentException` (잘못된 파라미터 전달)
 - `IllegalStateException` (잘못된 객체 상태에서 메서드 호출)
+
+<br>
 
 ## Error와 Exception의 차이는 무엇인가요? 🤓
 
