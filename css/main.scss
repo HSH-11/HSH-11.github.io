@@ -118,9 +118,8 @@
 {% include_relative _3-modules/buttons.scss %}
 /* >>>>>>>>>>>>>> :: 3.16-Scroll Button Top <<<<<<<<<<<<<<< */
 {% include_relative _3-modules/scroll-button-top.scss %}
-/* >>>>>>>>>>>>>> :: 3.17-List Style <<<<<<<<<<<<<<< */
+/* >>>>>>>>>>>>>> :: 3.17-Custom-list <<<<<<<<<<<<<<< */
 {% include_relative _3-modules/custom-lists.scss %}
-
 
 /* =======================
 :: 4-Layouts
@@ -131,3 +130,6 @@
 {% include_relative _4-layouts/page.scss %}
 /* >>>>>>>>>>>>>> :: 4.3-Tags Page <<<<<<<<<<<<<<< */
 {% include_relative _4-layouts/tags-page.scss %}
+
+
+
