@@ -1,0 +1,20 @@
+/* Custom Markdown List Style */
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+ul li {
+  position: relative;
+  padding-left: 1.8em;
+}
+
+ul li::before {
+  content: "\f044"; /* Font Awesome 별 아이콘 */
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  position: absolute;
+  left: 0;
+  top: 0.2em;
+  color: #f15b66;
+}
