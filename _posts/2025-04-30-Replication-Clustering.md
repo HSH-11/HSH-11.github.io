@@ -34,14 +34,14 @@ toc: true
 
 DB 클러스터링은 <span style="color:red">동기 방식으로 서버들 간의 데이터를 동기화</span>한다.
 
-- Actice - Active 방식과 Active - StandBy 방식이 있다.
+- Active - Active 방식과 Active - StandBy 방식이 있다.
 - 서버가 한 대 문제가 발생하더라도 대비가 가능하다.
 - 여러 DB 서버로 부하를 분산시켜 사용자의 요청을 더 많이 수용할 수 있다.(로드밸런싱)
 - 여러 대의 데이터베이스 서버를 가지므로 높은 가용성을 보장한다.
 
 ---
 
-### <span style="color:green">Active - Active Clustering</span>
+### Active - Active Clustering
 
 <br>
 
@@ -55,7 +55,7 @@ DB 클러스터링은 <span style="color:red">동기 방식으로 서버들 간�
 
 ---
 
-### <span style="color:green">Active - StandBy Clustering</span>
+### Active - StandBy Clustering
 
 <br>
 
@@ -191,13 +191,13 @@ Replay log는 Slave 서버에서 Master 서버의 Binary log를 저장하는 임
 
 ---
 
-## ✔️ 내용 정리
+## 내용 정리
 
 **Clustering**은 동일한 데이터를 여러 DB 서버가 **동기 방식**으로 공유하여 하나의 논리적 DB처럼 작동하는 구조이다.
 
 **Replication**은 Master-Slave 구조로 구성되어, 데이터를 **비동기 방식**으로 복제하여 읽기 요청을 분산시키는 구조이다.
 
-### 🔍 **Clustering의 특징**
+### Clustering의 특징
 
 - **구성 방식**: 여러 DB 서버가 **수평적**으로 동작 (Active-Active / Active-Standby)
 - **데이터 동기화**: **동기 방식**으로 데이터 일관성 보장
@@ -206,7 +206,7 @@ Replay log는 Slave 서버에서 Master 서버의 Binary log를 저장하는 임
 
 <br>
 
-### 🔍 **Replication의 특징**
+### Replication의 특징
 
 - **구성 방식**: Master-Slave 형태의 **수직적** 구조
 - **데이터 동기화**: **비동기 방식** → 복제 지연 가능성 존재
