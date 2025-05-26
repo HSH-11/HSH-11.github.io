@@ -5,15 +5,77 @@
 
 .post__content ul li {
   position: relative;
-  padding-left: 1.8em;
+  padding-left: 2.4em;
+  margin-bottom: 1.2em;
 }
 
 .post__content ul li::before {
-  content: "\f044"; /* Font Awesome star */
-  font-family: "Font Awesome 5 free";
+  content: "\f044"; 
+  font-family: "Font Awesome 5 Free";
   font-weight: 900;
   position: absolute;
   left: 0;
-  top: 0.2em;
-  color: #f15b66;
+  top: 0.1em;
+  width: 1.8em;
+  height: 1.8em;
+  line-height: 1.8em;
+  font-size: 0.9em;
+  text-align: center;
+  background: linear-gradient(135deg, #f15b66, #ff9a8b);
+  color: white;
+  border-radius: 0.6em;
+  box-shadow: 0 4px 10px rgba(241, 91, 102, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+.post__content ul li:hover::before {
+  transform: scale(1.1);
+  box-shadow: 0 6px 14px rgba(241, 91, 102, 0.6);
+}
+
+
+.post__content ol {
+  counter-reset: count;
+  list-style: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.post__content ol li {
+  counter-increment: count;
+  position: relative;
+  padding-left: 2.8em;
+  margin-bottom: 1.4em;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.post__content ol li::before {
+  content: counter(count);
+  position: absolute;
+  top: 0.1em;
+  left: 0;
+  width: 1.7em;
+  height: 1.7em;
+  line-height: 1.7em;
+  text-align: center;
+  font-size: 0.85em;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(145deg, #6366f1, #8b5cf6);
+  border-radius: 0.6em;
+  box-shadow: 0 4px 10px rgba(139, 92, 246, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.post__content ol li:hover::before {
+  transform: scale(1.1);
+  box-shadow: 0 6px 14px rgba(139, 92, 246, 0.6);
+}
+
+
+
+
+
+
+
