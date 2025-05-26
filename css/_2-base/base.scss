@@ -31,6 +31,13 @@ body {
   }
 }
 
+.post__content {
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans KR', sans-serif;
+  font-size: 1.25rem;
+  line-height: 1.8;
+}
+
+
 .global-wrap {
   &.is-active {
     overflow-x: hidden;
@@ -185,13 +192,6 @@ pre {
     cursor: pointer;
   }
 }
-.post__content {
-  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans KR', sans-serif;
-  font-size: 1.15rem;
-  line-height: 1.8;
-  color: #333;
-}
-
 
 img {
   max-width: 100%;
