@@ -16,8 +16,6 @@ tags_color: '#3CA03C'
 
 ## Filter
 
-### Filter란?
-
 필터는 서블릿 규격에 따라 작동하며 Spring과는 독립적으로 동작한다. 주로 인증,권한 처리, 보안 관련 작업에 사용된다. 
 
 예를 들어, 스프링 시큐리티에서는 필터를 사용하여 사용자의 인증 상태를 확인하고, 적절한 권한이 있는 지 검증한다. 또한, CORS 설정이나 XSS 방어와 같은 작업에도 필터가 사용된다.
@@ -45,13 +43,13 @@ public interface Filter {
     public default void destroy() {}
 ```
 
-1.init()
+- init()
 
 **필터 객체를 초기화하고 서비스에 추가하기 위한 메소드**이다.
 
 웹 컨테이너가 1회 init()을 호출하여 필터 객체를 초기화하면 이후 요청들은 doFilter()를 통해 처리된다.
 
-2.doFilter()
+- doFilter()
 
 url-pattern에 맞는 모든 **HTTP 요청이 Dispatcher Servlet으로 전달되기 전에 웹 컨테이너에 의해 실행되는 메소드**이다.
 
@@ -59,15 +57,13 @@ doFilter의 파라미터로 FilterChain이 있는데, FilterChain의 doFilter를
 
 chain.doFilter()로 전,후에 우리가 필요한 처리 과정을 넣어줌으로써 원하는 처리를 진행할 수 있다.
 
-3.destroy()
+- destroy()
 
 **필터 객체를 제거하고 사용하는 자원을 반환하기 위한 메소드**이다.
 
 웹 컨테이너가 1회 destroy()를 호출하여 필터 객체를 종료하면 이후에는 doFilter에 의해 처리되지 않는다.
 
 ## Interceptor
-
-### Interceptor란?
 
 스프링 MVC에서 제공하는 기능으로, 컨트롤러 전후의 흐름을 제어하는 데 주로 사용된다.
 
@@ -202,7 +198,7 @@ public class MyInterceptor implements HandlerInterceptor {
 
 예를 들어 JWT 토큰 정보를 파싱해서 컨트롤러에게 사용자의 정보를 제공하도록 가공할 수 있는 것이다.그 외에도 여러 목적으로 API 호출에 대한 정보들을 기록해야 하는 상황에 HttpServletRequest나 HttpServletResponse를 제공해주는 인터셉터는 클라이언트의 IP나 요청 정보들을 기록하기에 용이하다.
 
-## ✔️ 정리
+## 정리
 
 ### 필터와 인터셉터의 선택 기준
 
