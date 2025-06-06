@@ -1,14 +1,12 @@
 ---
 layout: post
-title: My Top 10 Code Editors for Developers
-description: Starting out in programming is thrilling, yet the number of languages available makes it difficult to decide where to begin.
-date: 2024-11-20 15:01:35 +0300
-image: '/images/15.jpg'
-tags: [Programming]
-tags_color: '#4643ec'
+title: 어뎁터 패턴
+description: 디자인 패턴 중 어뎁터(Adaptor) 패턴에 대해 알아보자!
+image: '/images/2025-06-07-adaptor-pattern/image.png'
+tags: [Design Pattern]
+tags_color:'#4643ec'
+toc:true
 ---
-
-First, define your goals. If you’re interested in web development, JavaScript could be a great place to start, as it's essential for creating dynamic web applications. For general-purpose coding or data science, Python is a favorite due to its readability and versatility. Ruby, though somewhat specialized, shines in web development, especially with the Rails framework.
 
 ### Overview of popular languages
 
