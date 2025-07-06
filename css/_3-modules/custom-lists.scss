@@ -99,6 +99,31 @@
   transition: box-shadow 0.3s ease;
 }
 
+.post__content ol ul li {
+  position: relative;
+  padding-left: 2em;
+  margin-bottom: 1em;
+}
+
+.post__content ol ul li::before {
+  content: "\f0da";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 1.5em;
+  height: 1.5em;
+  line-height: 1.5em;
+  font-size: 0.8em;
+  text-align: center;
+  background: linear-gradient(135deg, #f78ca0, #fbc2eb);
+  color: white;
+  border-radius: 0.5em;
+  box-shadow: 0 3px 8px rgba(247, 140, 160, 0.4);
+  transition: box-shadow 0.3s ease;
+}
+
 
 
 
