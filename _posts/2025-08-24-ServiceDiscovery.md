@@ -74,7 +74,7 @@ Client-Side Discovery에서는 Service Registry를 구현하는 다음과 같은
 
 1. 각 서비스 인스턴스가 **Eureka 서버에 등록**함 (Service Registry).
 2. 클라이언트는 Eureka에서 해당 서비스의 인스턴스 목록을 받아옵니다.
-3. 클라이언트는 자체 로직(e.g. Ribbon, LoadBalancer)을 통해 적절한 인스턴스를 선택하여 직접 호출합니.
+3. 클라이언트는 자체 로직(e.g. Ribbon, LoadBalancer)을 통해 적절한 인스턴스를 선택하여 직접 호출합니다.
 
 이번 개인 학습 프로젝트에서는 **Spring Cloud Netflix Eureka를 사용**하였습니다.
 
