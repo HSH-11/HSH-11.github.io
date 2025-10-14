@@ -1,8 +1,8 @@
 ---
 title:  "Saga Pattern, Event Sourcing, CQRS"
-tag: [Spring, Cloud]
+tag: [Spring, Cloud, MSA]
 layout: post
-description: MSA 핵심 디자인 패턴
+description: MSA 핵심 아키텍처 패턴
 image: '/images/2025-09-27-cqrs_saga_eventsourcing/image11.png'
 tags_color: '#4643ec'
 ---

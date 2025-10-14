@@ -3,7 +3,7 @@ layout: post
 title: 팩토리 메서드 패턴
 description: 디자인 패턴 중 팩토리 메서드에 대해 알아보자!
 image: '/images/2025-06-05-Factory-Method/image.png'
-tags: [Design Pattern]
+tags: [DesignPattern]
 tags_color: '#4643ec'
 toc: true
 ---

@@ -1,6 +1,6 @@
 ---
 title:  "API Gateway Service"
-tag: [Spring, Cloud]
+tag: [Spring, Cloud, MSA]
 layout: post
 description: Spring Cloud로 개발하는 마이크로서비스 애플리케이션(MSA) 
 image: '/images/2025-08-25-API Gateway/serviceregistry.png'

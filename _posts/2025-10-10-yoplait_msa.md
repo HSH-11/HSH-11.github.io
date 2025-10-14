@@ -1,6 +1,6 @@
 ---
 title:  "LG U+ 유레카 종합프로젝트 MSA 전환"
-tag: [Spring, Cloud, Project]
+tag: [Spring, Cloud, Project, MSA]
 layout: post
 description: Spring Cloud 기반 AI 요금제 추천 플랫폼 리팩토링 프로젝트
 image: '/images/2025-09-28-유레카 종합프로젝트/title-1759057651864-3.png'

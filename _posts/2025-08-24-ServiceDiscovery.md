@@ -1,6 +1,6 @@
 ---
 title:  "Service Discovery"
-tag: [Spring, Cloud]
+tag: [Spring, Cloud, MSA]
 layout: post
 description: Spring Cloud로 개발하는 마이크로서비스 애플리케이션(MSA)
 image: '/images/2025-08-24-ServiceDiscovery/image-20250825015721871.png'
