@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "일급 컬렉션"
-tag: [Java, Interview]
+tag: [Java]
 description: 일급 컬렉션이 무엇인가요?
 image: '/images/2025-03-20-first_class_collection/first_class_collection.png'
 tags_color: '#3eb99a'

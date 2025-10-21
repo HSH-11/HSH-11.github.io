@@ -1,6 +1,6 @@
 ---
 title: "엔티티 매니저는 어떤 역할을 할까?"
-tag: [BackEnd, Interview, JPA]
+tag: [BackEnd, JPA]
 layout: post
 description: 엔티티 매니저 역할 정리
 image: '/images/2025-03-17-EntityManager/image.png'

@@ -1,6 +1,6 @@
 ---
 title:  "Spring Data JPA에서 새로운 Entity인지 판단하는 방법"
-tag: [Spring, JPA, Interview]
+tag: [Spring, JPA]
 layout: post
 description: Entity의 새로운 여부 판단 정리
 image: '/images/2025-03-13-JPA_Entity/image.png'

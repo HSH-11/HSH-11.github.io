@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "equals와hashCode"
-tag: [Java, Interview]
+tag: [Java]
 description: equals와 hashCode는 왜 함께 재정의해야 할까요?
 image: '/images/2025-03-28-equals,hashCode/main.png'
 tags_color: '#3eb99a'
