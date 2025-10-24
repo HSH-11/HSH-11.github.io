@@ -10,7 +10,7 @@ Hey, I’m Seunghyun - Web developer and full-time lover of all things tech.
 {: .note }
 Even the most experienced developers don't know everything
 
-Over the years, my curiosity only deepened. I became a coder, learning languages like Python, JavaScript, and C++, and fell in love with the sheer power of programming. For me, coding isn’t just a skill; it’s a language for bringing ideas to life. The thrill of debugging, the satisfaction of building something from scratch, and the endless potential of code keep me motivated every day. Coding lets me shape my vision into reality, one line at a time.
+
 
 > Curiosity fuels my code, Linux keeps me grounded, and every bug is just a puzzle waiting to be solved.
 
@@ -56,5 +56,3 @@ The geek in me thrives on discovery, and as I explore new topics and skills, I�
 
 {: .important }
 Automate repetitive tasks. If you find yourself doing the same task multiple times, it's a sign you should automate it.
-
-Thank you for being here and for sharing in this journey with me. This blog is more than just articles and posts; it’s a community of curious, passionate individuals who love technology, creativity, and the endless pursuit of knowledge. Whether you’re a fellow Linux enthusiast, a developer looking for new ideas, or just someone curious about the digital world, I’m excited to connect and share this space with you.
