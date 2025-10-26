@@ -142,7 +142,7 @@ public class MyEntity implements Persistable<String> {
 
 ```
 
-**새로운 엔티티(`isNew() == true`)로 판단되는 경우**
+**새로운 엔티티(isNew() == true)로 판단되는 경우**
 
 - id가 직접 할당되었더라도 isNew 필드가 true일 때.
 - markNotNew()가 실행되기 전에는 새로운 엔티티로 간주됨.
