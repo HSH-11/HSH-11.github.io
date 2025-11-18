@@ -1,5 +1,5 @@
 ---
-title:  "Event Driven Architecture - outbox 패턴, CDC"
+title:  "MSA 환경에서 데이터 일관성을 보장하는 아키텍처 패턴"
 tag: [Spring, Cloud, MSA]
 layout: post
 description: MSA 환경에서 데이터 일관성을 보장하기 위한 Outbox 패턴과 CDC 기반 아키텍처를 추가적으로 소개합니다.
