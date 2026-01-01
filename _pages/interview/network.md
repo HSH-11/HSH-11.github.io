@@ -6,7 +6,7 @@ permalink: /interview/network/
 image: '/images/01.jpg'
 ---
 
-#### Q1. TCP 3-way handshake에 대해서 설명해주세요.
+### Q1. TCP 3-way handshake에 대해서 설명해주세요.
 
 **TCP 3-way Handshake**는 TCP/IP 네트워크에서 안정적이고 연결 지향적인 통신을 설정하기 위한 절차입니다.
 
@@ -26,7 +26,7 @@ image: '/images/01.jpg'
 
 ------
 
-#### Q2. TCP 4-way handshake에 대해서 설명해주세요.
+### Q2. TCP 4-way handshake에 대해서 설명해주세요.
 
 3-Way handshake는 TCP의 연결을 초기화 할 때 사용된다면, 4-Way handshake는 세션을 종료하기 위해 수행되는 절차입니다.
 
@@ -50,7 +50,7 @@ image: '/images/01.jpg'
 
 ------
 
-#### Q3. 리버스 프록시와 포워드 프록시의 차이점에 대해 설명해주세요.
+### Q3. 리버스 프록시와 포워드 프록시의 차이점에 대해 설명해주세요.
 
 포워드 프록시는 **주로 클라이언트 측에 위치하여, 사용자가 인터넷에 접근할 때 중개자 역할**을 합니다.
 
