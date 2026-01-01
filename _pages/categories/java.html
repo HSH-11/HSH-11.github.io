@@ -1,0 +1,64 @@
+---
+layout: default
+title: Java
+description: Java 관련 포스트
+permalink: /categories/java/
+image: '/images/01.jpg'
+---
+
+<!-- begin categories-page -->
+<section class="section categories-page">
+  {% assign sorted = '' | split: '' %}
+  {% for post in site.posts %}
+    {% assign has_java = false %}
+    {% if post.tag %}
+      {% for tag in post.tag %}
+        {% if tag == 'Java' or tag == 'java' %}{% assign has_java = true %}{% endif %}
+      {% endfor %}
+    {% endif %}
+    {% if post.tags %}
+      {% for tag in post.tags %}
+        {% if tag == 'Java' or tag == 'java' %}{% assign has_java = true %}{% endif %}
+      {% endfor %}
+    {% endif %}
+    {% if has_java %}
+      {% assign sorted = sorted | push: post %}
+    {% endif %}
+  {% endfor %}
+  <div class="container">
+    <div class="section__inner">
+      <div class="row">
+
+        <div class="col col-8 col-d-12">
+          <section class="hero-page">
+            <div class="hero-page__inner">
+              {% if page.title %}
+              <h1 class="hero-page__title">{{ page.title }}</h1>
+              {% endif %}
+              {% if page.description %}
+              <p class="hero-page__description">{{ page.description }}</p>
+              {% endif %}
+            </div>
+          </section>
+          <div class="row">
+            {% for post in sorted %}
+              {% include article.html class="col col-6 col-t-12 grid__post animate" %}
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="col col-4 col-d-12">
+          <aside class="sidebar">
+            {% include sidebar-widgets/widget-subscribe.html %}
+            {% include sidebar-widgets/widget-social.html %}
+            {% include sidebar-widgets/widget-featured-posts.html %}
+            {% include sidebar-widgets/widget-tags.html %}
+          </aside>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end categories-page -->
+

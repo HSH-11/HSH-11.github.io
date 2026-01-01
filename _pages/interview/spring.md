@@ -1,16 +1,10 @@
 ---
-layout: post
-title:  "Spring Interview"
-tag: [Spring]
-description: 스프링 프레임워크 관련 면접 질문 모음
-image: '/images/2025-03-01-Spring/Spring_Framework-Logo.png'
-tags_color: '#f14979'
-featured: true
+layout: page
+title: Interview - Spring
+description: Spring 관련 면접 질문 정리
+permalink: /interview/spring/
+image: '/images/Spring.png'
 ---
-
-# Spring Interview list
-
-![Spring]({{site.url}}/images/2025-03-01-Spring/Spring.png)
 
 #### Q1. Spring 프레임워크란 무엇인가요?
 
@@ -54,16 +48,19 @@ Spring 프레임워크는 자바 기반의 엔터프라이즈 애플리케이션
 DI를 활용하면 **객체 간의 결합도를 줄이고 테스트 용이성을 높일 수 있습니다.**
 
 1. **객체 간 결합도 낮춤 (Loose Coupling)**
-   
+
    클래스 간의 강한 의존성을 제거하여 유지보수 및 확장성을 높임.
+
 2. **테스트 용이성 향상**
-   
+
    객체를 직접 생성하지 않기 때문에 **Mock 객체를 쉽게 주입**하여 단위 테스트(Unit Test) 수행 가능.
+
 3. **유지보수성 및 확장성 증가**
-   
+
    새로운 기능 추가 시 **기존 코드 수정 없이 새로운 구현체만 주입**하면 됨.
+
 4. **객체 생성과 관리의 일관성 유지**
-   
+
    객체의 생명주기를 **Spring 컨테이너가 관리**하므로, 개발자가 객체 생성 및 관리를 직접 할 필요 없음.
 
 ```java
@@ -794,3 +791,8 @@ Bean으로 객체를 관리하는 이유는 애플리케이션의 설계, 확장
 #### 59. System.out.println을 사용하면 로깅 프레임워크는 사용하지 않아도 되지 않나요?
 
 로그를 출력하는 경우 대기 시간이 발생합니다. 그리고, 로그 또한 데이터이기 때문에 저장 공간을 요구합니다. 따라서, 정말로 필요한 경우에만 로깅을 수행하는 것이 비용 효율적입니다. 하지만, System.out.println은 로그 레벨 설정과 환경 별 필터링을 적용하기 까다롭습니다. 반면, 로깅 프레임워크는 로그 레벨 설정, 필터링 등 로그의 양 조절을 하기 위한 기능을 제공하기 때문에 이를 사용하는 것이 서비스 운영에 유리합니다.
+
+---
+
+*이 페이지는 면접 준비를 위한 정리 페이지입니다. 내용을 계속 추가해주세요.*
+

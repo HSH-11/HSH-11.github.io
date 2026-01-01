@@ -181,8 +181,12 @@
       .dropdown-toggle {
         display: flex;
         align-items: center;
-        height: 20px;
+        gap: 8px;
         cursor: pointer;
+
+        .nav__link {
+          margin: 0;
+        }
       }
     }
 

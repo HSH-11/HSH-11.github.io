@@ -1,16 +1,19 @@
-.post__content ul {
+.post__content ul,
+.page__content ul {
   list-style: none;
   padding-left: 0;
 }
 
-.post__content ul li {
+.post__content ul li,
+.page__content ul li {
   position: relative;
   padding-left: 2.4em;
   margin-bottom: 1.2em;
   margin-top: 1.0em;
 }
 
-.post__content ul li::before {
+.post__content ul li::before,
+.page__content ul li::before {
   content: "\f044"; 
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
@@ -29,20 +32,23 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.post__content ul li:hover::before {
+.post__content ul li:hover::before,
+.page__content ul li:hover::before {
   transform: scale(1.1);
   box-shadow: 0 6px 14px rgba(241, 91, 102, 0.6);
 }
 
 
-.post__content ol {
+.post__content ol,
+.page__content ol {
   counter-reset: count;
   list-style: none;
   padding-left: 0;
   margin-left: 0;
 }
 
-.post__content ol li {
+.post__content ol li,
+.page__content ol li {
   counter-increment: count;
   position: relative;
   padding-left: 2.8em;
@@ -52,7 +58,8 @@
   line-height: 1.6;
 }
 
-.post__content ol li::before {
+.post__content ol li::before,
+.page__content ol li::before {
   content: counter(count);
   position: absolute;
   top: 0.1em;
@@ -70,19 +77,22 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.post__content ol li:hover::before {
+.post__content ol li:hover::before,
+.page__content ol li:hover::before {
   transform: scale(1.1);
   box-shadow: 0 6px 14px rgba(139, 92, 246, 0.6);
 }
 
 
-.post__content ul ul li {
+.post__content ul ul li,
+.page__content ul ul li {
   position: relative;
   padding-left: 2em;
   margin-bottom: 1em;
 }
 
-.post__content ul ul li::before {
+.post__content ul ul li::before,
+.page__content ul ul li::before {
   content: "\f0da";
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
@@ -101,13 +111,15 @@
   transition: box-shadow 0.3s ease;
 }
 
-.post__content ol ul li {
+.post__content ol ul li,
+.page__content ol ul li {
   position: relative;
   padding-left: 2em;
   margin-bottom: 1em;
 }
 
-.post__content ol ul li::before {
+.post__content ol ul li::before,
+.page__content ol ul li::before {
   content: "\f0da";
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
