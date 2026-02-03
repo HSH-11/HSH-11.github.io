@@ -804,11 +804,11 @@ Bean으로 객체를 관리하는 이유는 애플리케이션의 설계, 확장
 
 #### 61. 트랜잭션 매니저와 트랜잭션 동기화 매니저가 무엇인가요?
 
-JDBC를 사용한 트랜잭션 관리 코드와 JPA를 사용한 트랜잭션의 양상이 다릅니다. 스프링은 개발자가 트랜잭션에 대한 구현 세부 사항을 신경 쓰지 않도록 트랜잭션 추상화인 PlatformTransactionManager를 제공합니다. 개발자는 상황에 맞게 DataSourceTransactionManager, JpaTransactionManager를 사용할 수 있으며, 이를 **트랜잭션 매니저(Transaction Manager)** 라고 부릅니다.
+스프링은 개발자가 트랜잭션에 대한 구현 세부 사항을 신경 쓰지 않도록 트랜잭션 추상화인 PlatformTransactionManager를 제공합니다. 개발자는 상황에 맞게 DataSourceTransactionManager, JpaTransactionManager를 사용할 수 있으며, 이를 **트랜잭션 매니저(Transaction Manager)** 라고 부릅니다.
 
 서비스 로직에서 여러 서비스 로직을 호출할 수 있고, 데이터 접근 로직을 호출할 수도 있습니다. 이때 트랜잭션을 유지하기 위해서는 해당 트랜잭션을 시작한 커넥션이 여러 코드에 걸쳐 필요하게 됩니다. **트랜잭션 동기화 매니저(Transaction Syncronization Manager)** 는 이를 도와줍니다. 만약, 트랜잭션 동기화 매니저가 없다면, 다른 코드의 메서드를 호출할 때마다 커넥션을 인자로 넘겨줘야 하는 문제가 발생합니다.
 
 ---
 
-*이 페이지는 면접 준비를 위한 정리 페이지입니다. 내용을 계속 추가해주세요.*
+*이 페이지는 면접 준비를 위한 정리 페이지입니다.*
 
