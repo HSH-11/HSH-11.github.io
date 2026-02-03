@@ -106,7 +106,27 @@
 
         &.dropdown {
           .dropdown-toggle {
+            display: block;
+            width: 100%;
+
+            .nav__link {
+              display: block;
+              width: 100%;
+            }
+          }
+
+          .dropdown-menu {
             display: none;
+            opacity: 0;
+            visibility: hidden;
+            margin-top: 4px;
+            padding-left: 16px;
+          }
+
+          &.is-open .dropdown-menu {
+            display: block;
+            opacity: 1;
+            visibility: visible;
           }
         }
 
