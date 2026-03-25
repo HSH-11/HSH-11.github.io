@@ -167,6 +167,20 @@ public void consume(List<? super Cat> cats) { // cats가 소비자 역할
 
 우리가 작성한 `.java` 파일은 JDK에 포함된 **javac(java compiler)** 를 통해 컴파일됩니다. 이 과정에서 JVM이 이해할 수 있는 **바이트 코드**로 변환되어 `.class` 파일이 생성됩니다. 이후부터는 JVM이 담당하는데요. 먼저 **클래스 로더(Class Loader)** 가 바이트 코드를 JVM 메모리에 동적으로 로드합니다. 로드된 바이트 코드는 Method Area에 저장되며, 이때 로딩(Loading), 링킹(Linking), 초기화(Initialization) 단계를 거칩니다. 그다음, **실행 엔진(Execution Engine)** 이 로드된 바이트 코드를 실행합니다. 하지만 바이트 코드는 컴퓨터가 읽을 수 없기 때문에 **인터프리터(Interpreter)** 와 **JIT 컴파일러(Just-In-Time Compiler)** 를 함께 사용하여 기계어로 변환합니다. 인터프리터는 바이트 코드를 한 줄씩 읽어서 실행하는 방식이고, JIT 컴파일러는 자주 실행되는 메서드(Hotspot)를 감지하면 해당 메서드 전체를 네이티브 코드로 변환하여 캐싱합니다.
 
+------
+
+### Q12. ThreadLocal에 대해 설명해 주세요.
+
+**ThreadLocal**은 Java에서 각 스레드마다 독립적인 변수를 저장할 수 있도록 도와주는 클래스입니다. 보통 여러 스레드가 공유 자원을 사용하면 동시성 문제가 발생할 수 있는데, ThreadLocal을 사용하면 스레드별로 데이터를 분리할 수 있어 동기화 없이 안전하게 활용할 수 있습니다. 각 스레드는 자신만의 ThreadLocalMap을 가지고 있고 ThreadLocal을 키로 사용하여 값을 저장합니다. 즉, 하나의 스레드에서 여러 개의 ThreadLocal을 사용할 수 있으며, ThreadLocal은 현재 스레드의 ThreadLocalMap을 제어하는 역할을 합니다.
+
+Spring 생태계에서는 ThreadLocal을 사용하여 트랜잭션 동기화 관리(`TransactionSynchronizationManager`), 사용자 인증 정보 관리(`SecurityContextHolder`), 웹 요청의 attribute 관리(`RequestContextHolder`) 등의 기능을 제공하고 있습니다.
+
+{: .tip}
+
+**ThreadLocal의 장점은 무엇인가요?**
+
+각 스레드는 ThreadLocal에 접근할 때 다른 스레드와 격리된 값을 가질 수 있습니다. 그리고 공유 자원이 없기 때문에 synchronized 키워드 등을 사용해서 동기화할 필요가 없습니다.
+
 
 ---
 
