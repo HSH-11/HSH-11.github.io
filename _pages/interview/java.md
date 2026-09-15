@@ -184,5 +184,27 @@ Spring 생태계에서는 ThreadLocal을 사용하여 트랜잭션 동기화 관
 
 ---
 
+#### Q13. String, StringBuilder, StringBuffer 각각의 차이에 대해 설명해주세요.
 
+String은 불변입니다. StringBuilder와 StringBuffer는 이런 String의 특징때문에 사용하는 가변타입이라고 볼 수 있습니다.
 
+StringBuilder와 StringBuffer는 Thread-safe 여부의 차이가 있습니다. StringBuilder는 Thread-safe하지 않습니다. 따라서 Multi-Thread 환경에서 사용할 때는 StringBuffer를 사용합니다.
+
+------
+
+#### Q14. 직렬화와 역직렬화에 대해서 설명해주세요.
+
+직렬화란 자바 시스템 내부에서 사용되는 객체 또는 데이터를 외부의 자바 시스템에서도 사용할 수 있도록 바이트 형태로 데이터 변환하는 기술과 바이트로 변환된 데이터를 다시 변환하는 기술(역직렬화)을 아울러서 이야기 합니다.
+
+자바 직렬화는 JVM의 메모리에서만 상주되어있는 객체 데이터를 영속화(Persistence)가 필요할 때 사용됩니다. 시스템이 종료되더라도 없어지지 않는 장점을 가지며 영속화된 데이터이기 때문에 네트워크로 전송이 가능합니다.
+
+------
+
+#### Q15. JDK와 JRE의 차이점을 설명해주세요.
+
+JDK는 Java Development KIT의 약자로 개발하는데 사용되는 도구이며 JRE를 포함하고 있으며
+JRE는 Java Runtime Environment의 약자로 자바로 만들어진 프로그램을 실행시키는데 필요한 도구가
+들어있는 차이가 있습니다.
+
+운영서버와 같은 곳에서는 개발에 필요한 도구가 아닌 프로그램을 실행시키는 도구만 필요하기 때문에
+개발도구가 들어있는 JDK아닌 JRE를 설치합니다.
