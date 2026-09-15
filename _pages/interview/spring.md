@@ -835,3 +835,17 @@ Bean으로 객체를 관리하는 이유는 애플리케이션의 설계, 확장
 필터와 인터셉터는 실행되는 시점에서 차이가 있습니다. 필터는 웹 애플리케이션에 등록을 하고, 인터셉터는 스프링의 context에 등록을 합니다. 따라서 컨트롤러에 들어가기 전 작업을 처리하기 위해 사용하는 공통점이 있지만, 호출되는 시점에서 차이가 존재합니다.
 
 ![filter]({{site.url}}/images/2025-04-12-filter_Interceptor_AOP/filter.png)
+
+------
+
+#### 64. Spring에서 CORS 에러를 해결하기 위한 방법을 설명해주세요.
+
+Servlet Filter를 사용하여 커스텀한 Cors 설정하거나, WebMvcConfigure를 구현한 Configuration 클래스를 만들어서 addCorsMappings()를 재정의할 수도 있고, 마지막으로 Spring Security에서 CorsConfigurationSource를 Bean으로 등록하고 config에 추가해줌으로써 해결할 수 있습니다.
+
+Controller 클래스에 @Crossorigin 어노테이션을 통해 해결할 수 있습니다.
+
+------
+
+#### 65. Spring Web MVC에서 요청 마다 Thread가 생성되어 Controller를 통해 요청을 수행할텐데, 어떻게 1개의 Controller만 생성될 수 있을까요?
+
+@Controller 어노테이션을 타고 들어가보면 @Component라는 어노테이션이 붙어 있습니다. 따라서 컨트롤러는 IoC컨테이너에 등록되어 Spring bean으로 관리됩니다. Spring의 빈 생성 전략의 기본은 싱글턴입니다. IoC컨테이너에 Controller Bean은 싱글턴 전략에 의해 1개만 존재하고 Application이 Init 되는 시점에 초기화됩니다. 그리고 실제 사용되는 시점에 의존성 주입을 통해서 사용됩니다. 요청시마다 새로 Bean을 생성해서 사용하는 것이 아닌 이미 생성되어있는 Bean을 가져다 쓰게됨으로써 여러개의 Thread에서 Contoller를 사용해도 1개의 동일한 컨트롤러인 것입니다. 만약 요청이 올때마다 새로운 컨트롤러가 생기길 바란다면 Bean scope를 Singleton 이 아닌, request 등으로 설정하면 요청이 들어올 때 혹은 지정한 전략마다 새로운 컨트롤러 Bean이 생기도록 할 수 있습니다.
