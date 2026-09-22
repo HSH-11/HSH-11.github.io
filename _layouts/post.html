@@ -62,7 +62,7 @@ layout: default
         <div class="post__content">
           {% if page.toc == true %}
           <div class="post__toc">
-            <h2 class="post__toc__title">Table of Contents</h2>
+            <h2 class="post__toc__title"><i class="fas fa-list-ol" aria-hidden="true"></i> 목차</h2>
             {% include toc.html html=content ordered=true class="post__toc__list" h_min=2 %}
           </div>
           {% endif %}

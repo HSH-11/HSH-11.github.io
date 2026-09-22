@@ -34,7 +34,7 @@ layout: default
         <div class="page__content">
           {% if page.toc == true %}
           <div class="page__toc">
-            <h2 class="page__toc__title">Table of Contents</h2>
+            <h2 class="page__toc__title"><i class="fas fa-list-ol" aria-hidden="true"></i> 목차</h2>
             {% include toc.html html=content ordered=true class="page__toc__list" h_min=2 %}
           </div>
           {% endif %}
