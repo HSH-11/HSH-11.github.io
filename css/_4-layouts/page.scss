@@ -459,7 +459,9 @@
       border-left-color: color-mix(in srgb, var(--toc-accent) 35%, transparent);
     }
 
-    li:last-child > a {
+    > li:last-child > a,
+    > li:last-child > ol > li:last-child > a,
+    > li:last-child > ol > li:last-child > ol > li:last-child > a {
       border-bottom: none;
     }
 
@@ -508,7 +510,7 @@
 
       li a {
         color: var(--text-color);
-        border-bottom-color: rgba(255, 255, 255, 0.1);
+        border-bottom-color: rgba(255, 255, 255, 0.12);
 
         &::before {
           color: var(--toc-accent);

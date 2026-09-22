@@ -222,11 +222,31 @@ a {
 }
 
 hr {
+  position: relative;
+  display: block;
   width: 100%;
   height: 1px;
   margin: 64px 0;
   border: 0;
-  background: var(--border-color);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in srgb, var(--secondary-color) 28%, var(--border-color)) 18%,
+    color-mix(in srgb, var(--secondary-color) 28%, var(--border-color)) 82%,
+    transparent 100%
+  );
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 7px;
+    height: 7px;
+    background: var(--secondary-color);
+    box-shadow: 0 0 0 4px var(--background-color);
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
 
   @media (max-width: $mobile) {
     margin: 48px 0;
