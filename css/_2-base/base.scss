@@ -151,15 +151,20 @@ pre {
   word-break: break-all;
   color: var(--heading-font-color);
 
+  &:not(.highlight) {
+    border-radius: 8px;
+    background: var(--syntax-highlighting-background);
+  }
+
   &.highlight {
     &:hover {
-      button {
+      > button:not(.code-window__copy) {
         opacity: 1;
       }
     }
   }
 
-  &.highlight>button {
+  &.highlight > button:not(.code-window__copy) {
     opacity: 0;
 
     &:hover {
@@ -169,12 +174,12 @@ pre {
     }
   }
 
-  &.highlight>button:active,
-  &.highlight>button:focus {
+  &.highlight > button:not(.code-window__copy):active,
+  &.highlight > button:not(.code-window__copy):focus {
     opacity: 1;
   }
 
-  button {
+  > button:not(.code-window__copy) {
     position: absolute;
     right: 15px;
     top: 15px;
