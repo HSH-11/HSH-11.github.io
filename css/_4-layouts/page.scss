@@ -224,6 +224,31 @@
     margin-bottom: 16px;
   }
 
+  &__content > h2 {
+    position: relative;
+    margin-top: 2.5rem;
+    margin-bottom: 1.15rem;
+    padding-bottom: 0.65rem;
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        var(--secondary-color) 0 2.75rem,
+        color-mix(in srgb, var(--heading-font-color) 28%, transparent) 2.75rem
+      );
+    }
+
+    &:first-child {
+      margin-top: 0.25rem;
+    }
+  }
+
   h3 {
     font-size: $font-size-h3;
     margin-bottom: 16px;
