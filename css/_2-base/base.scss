@@ -262,39 +262,95 @@ hr {
   display: block;
   max-width: 100%;
   overflow-x: auto;
+  margin-bottom: 28px;
+  border-radius: 10px;
+  border: 1px solid #d5e4f5;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
 }
 
 table {
-  font-size: 12px;
-  color: var(--heading-font-color);
   width: 100%;
-  border-width: 1px;
-  border-color: var(--border-alt-color);
-  border-collapse: collapse;
+  margin: 0 0 28px;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-family: $heading-font-family;
+  font-size: 14px;
+  line-height: 1.55;
   color: var(--heading-font-color);
+  background: #fff;
+  border: 1px solid #d5e4f5;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.table-container table {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 table th {
-  padding: 10px;
-  font-size: 16px;
-  text-align: left;
-  border: 1px solid var(--th-color);
-  color: var(--heading-font-color);
+  padding: 12px 16px;
+  font-size: 13px;
   font-weight: 700;
-}
-
-table tr {
-  background: var(--tr-color);
-
-  &:nth-child(even) {
-    background: transparent;
-  }
+  letter-spacing: 0.02em;
+  text-align: left;
+  color: #1e3a5f;
+  background: #f0f8ff;
+  border: none;
+  border-bottom: 2px solid var(--secondary-color);
+  white-space: nowrap;
 }
 
 table td {
-  padding: 10px;
+  padding: 12px 16px;
   font-size: 14px;
-  border: 1px solid var(--th-color);
+  font-weight: 400;
+  vertical-align: top;
+  color: var(--text-color);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #e2eaf4;
+}
+
+table tr:last-child td {
+  border-bottom: none;
+}
+
+table tbody tr:hover td {
+  background: #f7fbff;
+}
+
+:root[dark] {
+  .table-container {
+    border-color: #232939;
+    background: var(--background-alt-color-2);
+    box-shadow: none;
+  }
+
+  table {
+    background: var(--background-alt-color-2);
+    border-color: #232939;
+    box-shadow: none;
+  }
+
+  table th {
+    color: var(--heading-font-color);
+    background: #152033;
+    border-bottom-color: var(--secondary-color);
+  }
+
+  table td {
+    color: var(--text-color);
+    border-bottom-color: #232939;
+  }
+
+  table tbody tr:hover td {
+    background: rgba(96, 176, 186, 0.08);
+  }
 }
 
 .lazy {
