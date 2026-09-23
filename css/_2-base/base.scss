@@ -236,8 +236,8 @@ hr {
   background: linear-gradient(
     90deg,
     transparent 0%,
-    color-mix(in srgb, var(--secondary-color) 28%, var(--border-color)) 18%,
-    color-mix(in srgb, var(--secondary-color) 28%, var(--border-color)) 82%,
+    #{'color-mix(in srgb, var(--secondary-color) 28%, var(--border-color))'} 18%,
+    #{'color-mix(in srgb, var(--secondary-color) 28%, var(--border-color))'} 82%,
     transparent 100%
   );
 

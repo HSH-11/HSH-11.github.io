@@ -334,7 +334,7 @@
   background-color: var(--background-color);
   border: 1px solid #cfd4d3;
   border-radius: 4px;
-  box-shadow: 0 1px 1px rgb(0 0 0 / 13%);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.13);
   margin-bottom: 50px;
   padding: 0;
   overflow: hidden;
@@ -443,20 +443,20 @@
         font-weight: 700;
         line-height: 1;
         color: var(--toc-accent);
-        background: color-mix(in srgb, var(--toc-accent) 12%, transparent);
+        background: #{'color-mix(in srgb, var(--toc-accent) 12%, transparent)'};
         border-radius: 6px;
       }
 
       &:hover {
-        background: color-mix(in srgb, var(--toc-accent) 6%, transparent);
+        background: #{'color-mix(in srgb, var(--toc-accent) 6%, transparent)'};
         border-left-color: var(--toc-accent);
         color: var(--toc-accent);
       }
     }
 
     > li > a {
-      background: color-mix(in srgb, var(--toc-accent) 4%, transparent);
-      border-left-color: color-mix(in srgb, var(--toc-accent) 35%, transparent);
+      background: #{'color-mix(in srgb, var(--toc-accent) 4%, transparent)'};
+      border-left-color: #{'color-mix(in srgb, var(--toc-accent) 35%, transparent)'};
     }
 
     > li:last-child > a,
@@ -514,17 +514,17 @@
 
         &::before {
           color: var(--toc-accent);
-          background: color-mix(in srgb, var(--toc-accent) 18%, transparent);
+          background: #{'color-mix(in srgb, var(--toc-accent) 18%, transparent)'};
         }
 
         &:hover {
-          background: color-mix(in srgb, var(--toc-accent) 12%, transparent);
+          background: #{'color-mix(in srgb, var(--toc-accent) 12%, transparent)'};
           color: var(--toc-accent);
         }
       }
 
       > li > a {
-        background: color-mix(in srgb, var(--toc-accent) 8%, transparent);
+        background: #{'color-mix(in srgb, var(--toc-accent) 8%, transparent)'};
       }
 
       li ol > li a {
