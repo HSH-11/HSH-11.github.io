@@ -282,40 +282,116 @@
   }
 
   .note, .tip, .important, .warning, .caution {
+    --callout-bg: var(--callout-note);
+    --callout-accent: var(--callout-note-accent);
+    --callout-border: var(--callout-note-border);
+    --callout-rail: 3px;
+    --callout-icon-bg: transparent;
+    --callout-icon-radius: 0;
+
     position: relative;
-    padding: 32px 32px 32px 64px;
-    font-family: $heading-font-family;
-    font-size: 18px;
-    border-radius: 8px;
+    margin: 1.6em 0;
+    padding: 14px 18px 16px 16px;
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans KR', sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.75;
+    border-radius: 12px;
+    border: 1px solid var(--callout-border);
+    border-left: var(--callout-rail) solid var(--callout-accent);
+    background: var(--callout-bg);
     color: var(--heading-font-color);
 
-    &::after {
-      content: "\1F4A1";
-      position: absolute;
-      top: 32px;
-      left: 32px;
+    &::before {
       display: block;
+      min-height: 22px;
+      margin-bottom: 6px;
+      padding-left: 30px;
+      font-family: 'Pretendard', $heading-font-family;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      line-height: 22px;
+      color: var(--callout-accent);
+    }
+
+    &::after {
+      position: absolute;
+      top: 14px;
+      left: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border-radius: var(--callout-icon-radius);
+      background: var(--callout-icon-bg);
+      font-family: "Font Awesome 5 Free";
+      font-size: 14px;
+      font-weight: 900;
+      font-style: normal;
+      line-height: 1;
+      color: var(--callout-accent);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    > :last-child {
+      margin-bottom: 0;
     }
   }
 
   .note {
-    background: var(--callout-note);
+    &::before { content: "참고"; }
+    &::after { content: "\f05a"; }
   }
 
   .tip {
-    background: var(--callout-tip);
+    --callout-bg: var(--callout-tip);
+    --callout-accent: var(--callout-tip-accent);
+    --callout-border: var(--callout-tip-border);
+    --callout-rail: 4px;
+    --callout-icon-radius: 6px;
+    --callout-icon-bg: color-mix(in srgb, var(--callout-accent) 16%, transparent);
+
+    &::before { content: "팁"; }
+    &::after { content: "\f0eb"; font-size: 13px; }
   }
 
   .important {
-    background: var(--callout-important);
+    --callout-bg: var(--callout-important);
+    --callout-accent: var(--callout-important-accent);
+    --callout-border: var(--callout-important-border);
+    --callout-rail: 6px;
+    --callout-icon-radius: 50%;
+    --callout-icon-bg: color-mix(in srgb, var(--callout-accent) 18%, transparent);
+
+    &::before { content: "중요"; font-size: 13px; }
+    &::after { content: "\f06a"; font-size: 13px; }
   }
 
   .warning {
-    background: var(--callout-warning);
+    --callout-bg: var(--callout-warning);
+    --callout-accent: var(--callout-warning-accent);
+    --callout-border: var(--callout-warning-border);
+    --callout-rail: 4px;
+    --callout-icon-radius: 6px;
+    --callout-icon-bg: color-mix(in srgb, var(--callout-accent) 18%, transparent);
+
+    &::before { content: "경고"; }
+    &::after { content: "\f071"; font-size: 12px; }
   }
 
   .caution {
-    background: var(--callout-caution);
+    --callout-bg: var(--callout-caution);
+    --callout-accent: var(--callout-caution-accent);
+    --callout-border: var(--callout-caution-border);
+    --callout-icon-radius: 50%;
+    --callout-icon-bg: color-mix(in srgb, var(--callout-accent) 20%, transparent);
+
+    border: 1.5px solid color-mix(in srgb, var(--callout-accent) 62%, var(--callout-bg));
+
+    &::before { content: "주의"; }
+    &::after { content: "\f05e"; font-size: 12px; }
   }
 
   @media (max-width: $tablet) {
