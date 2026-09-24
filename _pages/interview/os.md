@@ -3,6 +3,7 @@ layout: page
 title: Interview - OS
 description: 운영체제 관련 면접 질문 정리
 permalink: /interview/os/
+interview_practice: true
 image: '/images/01.jpg'
 ---
 

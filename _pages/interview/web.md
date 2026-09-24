@@ -3,6 +3,7 @@ layout: page
 title: Interview - Web
 description: 웹 개발 관련 면접 질문 정리
 permalink: /interview/web/
+interview_practice: true
 image: '/images/01.jpg'
 ---
 

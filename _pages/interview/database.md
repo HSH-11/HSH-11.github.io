@@ -3,6 +3,7 @@ layout: page
 title: Interview - Database
 description: 데이터베이스 관련 면접 질문 정리
 permalink: /interview/database/
+interview_practice: true
 image: '/images/01.jpg'
 ---
 

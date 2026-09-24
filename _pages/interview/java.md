@@ -3,6 +3,7 @@ layout: page
 title: Interview - Java
 description: Java 관련 면접 질문 정리
 permalink: /interview/java/
+interview_practice: true
 image: '/images/01.jpg'
 ---
 
