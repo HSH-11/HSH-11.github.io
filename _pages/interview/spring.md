@@ -3,6 +3,7 @@ layout: page
 title: Interview - Spring
 description: Spring 관련 면접 질문 정리
 permalink: /interview/spring/
+interview_practice: true
 image: '/images/Spring.png'
 ---
 

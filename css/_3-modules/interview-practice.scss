@@ -1,0 +1,214 @@
+.interview-q {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.interview-q__text {
+  flex: 1;
+  min-width: 0;
+}
+
+.interview-practice-btn {
+  flex: 0 0 auto;
+  margin-top: 2px;
+  padding: 6px 12px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--gradient-color);
+  color: var(--button-color);
+  font-family: $heading-font-family;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+  cursor: pointer;
+
+  &.is-active {
+    background: var(--background-alt-color);
+    color: var(--heading-font-color);
+  }
+}
+
+.interview-answer-blur {
+  filter: blur(8px);
+  user-select: none;
+  pointer-events: none;
+}
+
+.interview-panel {
+  position: fixed;
+  z-index: 40;
+  top: 88px;
+  right: 20px;
+  bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  width: min(400px, calc(100vw - 32px));
+  padding: 18px;
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  background: var(--background-color);
+  color: var(--text-color);
+  box-shadow: 0 18px 50px rgba(16, 20, 31, 0.18);
+  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  &[hidden] {
+    display: none;
+  }
+
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  &__kicker {
+    margin: 0 0 4px;
+    color: var(--secondary-color);
+    font-family: $heading-font-family;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  &__title {
+    margin: 0;
+    color: var(--heading-font-color);
+    font-family: $heading-font-family;
+    font-size: 16px;
+    line-height: 1.4;
+  }
+
+  &__close,
+  &__hint,
+  &__send {
+    border: 0;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: $heading-font-family;
+    font-weight: 600;
+  }
+
+  &__close {
+    padding: 8px 10px;
+    background: transparent;
+    color: var(--text-alt-color);
+  }
+
+  &__note {
+    margin: 12px 0;
+    color: var(--text-alt-color);
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  &__log {
+    flex: 1;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 12px;
+    padding-right: 4px;
+  }
+
+  &__form textarea {
+    width: 100%;
+    resize: vertical;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background: var(--background-alt-color-2);
+    color: var(--heading-font-color);
+    font: inherit;
+  }
+
+  &__label {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--heading-font-color);
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  &__hint {
+    padding: 10px 12px;
+    background: var(--background-alt-color);
+    color: var(--heading-font-color);
+  }
+
+  &__send {
+    padding: 10px 14px;
+    background: var(--gradient-color);
+    color: var(--button-color);
+  }
+
+  &__send:disabled,
+  &__hint:disabled {
+    opacity: 0.6;
+    cursor: progress;
+  }
+}
+
+.interview-bubble {
+  max-width: 95%;
+  padding: 10px 12px;
+  border-radius: 12px;
+
+  &__who {
+    display: block;
+    margin-bottom: 4px;
+    font-family: $heading-font-family;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+  }
+
+  p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.55;
+    white-space: pre-wrap;
+  }
+
+  &--interviewer {
+    align-self: flex-start;
+    background: var(--background-alt-color);
+    color: var(--heading-font-color);
+  }
+
+  &--user {
+    align-self: flex-end;
+    background: var(--gradient-color);
+    color: var(--button-color);
+  }
+
+  &--error p {
+    color: var(--callout-caution-accent);
+  }
+}
+
+@media (max-width: 760px) {
+  .interview-q {
+    flex-direction: column;
+  }
+
+  .interview-panel {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: auto;
+    border-radius: 0;
+  }
+}

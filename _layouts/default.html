@@ -29,6 +29,14 @@
 
   <script src="{{ '/js/scripts.js' | relative_url }}"></script>
   <script src="{{ '/js/common.js' | relative_url }}"></script>
+  {% if page.interview_practice %}
+  <script>
+    window.INTERVIEW_PRACTICE = {
+      endpoint: {{ site.data.interview.practice_endpoint | jsonify }}
+    };
+  </script>
+  <script src="{{ '/js/interview-practice.js' | relative_url }}"></script>
+  {% endif %}
 </body>
 
 </html>

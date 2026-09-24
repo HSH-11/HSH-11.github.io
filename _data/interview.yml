@@ -1,0 +1,2 @@
+# Worker POST /practice URL.
+practice_endpoint: "https://interview-proxy.lyk1517.workers.dev/practice"
