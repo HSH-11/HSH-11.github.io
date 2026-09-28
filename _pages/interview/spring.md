@@ -114,8 +114,8 @@ public class AppConfig {
 
 💡 **특징**
 
-- `@Configuration`을 사용하여 **Spring 설정 클래스를 정의**
-- `@Bean`을 사용하여 **메서드의 반환값을 Spring Bean으로 등록**
+- @Configuration을 사용하여 **Spring 설정 클래스를 정의**
+- @Bean을 사용하여 **메서드의 반환값을 Spring Bean으로 등록**
 - XML 설정보다 **가독성이 좋고, 타입 안정성(Type Safety)을 제공**
 - 애노테이션
 
@@ -127,9 +127,9 @@ public class MyBean { }
 
 **💡 특징**
 
-- `@Component`를 사용하면 **Spring이 자동으로 Bean을 등록**
-- `@ComponentScan`을 통해 **해당 패키지를 스캔하여 Bean을 자동 감지**
-- `@Service`, `@Repository`, `@Controller` 같은 **특화된 애노테이션 제공**
+- @Component를 사용하면 **Spring이 자동으로 Bean을 등록**
+- @ComponentScan을 통해 **해당 패키지를 스캔하여 Bean을 자동 감지**
+- @Service, @Repository, @Controller 같은 **특화된 애노테이션 제공**
 
 ------
 
@@ -333,19 +333,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 }
 ```
 
-`WebSecurityConfigurerAdapter`는 보안 설정을 커스터마이징할 수 있는 추상 클래스
+WebSecurityConfigurerAdapter는 보안 설정을 커스터마이징할 수 있는 추상 클래스
 
-`configure(HttpSecurity http)`를 오버라이드해서 인증, 권한, 로그인/로그아웃 등을 설정
+configure(HttpSecurity http)를 오버라이드해서 인증, 권한, 로그인/로그아웃 등을 설정
 
 {: .important}
 
-**`@Component` 또는 `@Configuration`만 사용** (현대 방식, Spring Security 5.7+)
+**@Component 또는 @Configuration만 사용** (현대 방식, Spring Security 5.7+)
 
-`@EnableWebSecurity` 없이도 Spring Security 자동 설정이 활성화됩니다.
+@EnableWebSecurity 없이도 Spring Security 자동 설정이 활성화됩니다.
 
-`SecurityFilterChain` Bean을 명시적으로 등록하여 보안 설정을 구성합니다.
+SecurityFilterChain Bean을 명시적으로 등록하여 보안 설정을 구성합니다.
 
-`WebSecurityConfigurerAdapter`는 더 이상 사용하지 않고 람다식 기반 설정을 선호
+WebSecurityConfigurerAdapter는 더 이상 사용하지 않고 람다식 기반 설정을 선호
 
 ```java
 @Configuration
