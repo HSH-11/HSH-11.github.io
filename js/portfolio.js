@@ -3,6 +3,9 @@
     if (!dialog || typeof dialog.showModal !== "function" || dialog.open) {
       return;
     }
+    document.querySelectorAll(".case-dialog[open]").forEach(function (openDialog) {
+      openDialog.close();
+    });
     dialog.showModal();
     document.body.classList.add("portfolio-dialog-open");
     var closeButton = dialog.querySelector("[data-close-dialog]");
