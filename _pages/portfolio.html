@@ -1,0 +1,132 @@
+---
+layout: portfolio
+title: 프로젝트
+permalink: /portfolio/
+description: LG U+ 유레카 융합 프로젝트 IT:PLACE에서 맡은 역할과 결과를 정리한 포트폴리오입니다.
+---
+
+{% assign itplace_post = site.posts | where: "title", "LG 유플러스 유레카 융합프로젝트" | first %}
+
+<div class="container">
+  <div class="work">
+    <header class="work-head">
+      <p class="work-head__label">Work</p>
+      <h1>프로젝트</h1>
+      <p>목록을 누르면 프로젝트 내용을 엽니다.</p>
+    </header>
+
+    <nav class="work-index" aria-label="프로젝트 목록">
+      <button class="work-index__item is-current" type="button" data-open-dialog="project-itplace">
+        <span class="work-index__no">01</span>
+        <span class="work-index__name">IT:PLACE</span>
+        <span class="work-index__summary">통신사 멤버십 혜택 지도</span>
+        <span class="work-index__year">2025</span>
+      </button>
+    </nav>
+  </div>
+</div>
+
+<dialog class="case-dialog" id="project-itplace" aria-labelledby="itplace-title">
+  <div class="case-dialog__panel">
+    <button class="case-dialog__close" type="button" data-close-dialog aria-label="닫기">
+      <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false">
+        <path d="M4 4l10 10M14 4L4 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <div class="case-dialog__scroll">
+    <article class="case" id="itplace">
+      <div class="case__mast">
+      <header class="case__header">
+        <p class="case__kicker">LG U+ 유레카 융합 프로젝트</p>
+        <h2 id="itplace-title">IT:PLACE</h2>
+        <p class="case__deck">통신사 멤버십 혜택을 지도에서 찾고, 이용 기록으로 추천까지 이어 주는 플랫폼입니다.</p>
+        <p class="case__meta">
+          <span>백엔드 팀장</span>
+          <span>6명</span>
+          <span>2025.06.30 – 2025.08.07</span>
+        </p>
+      </header>
+      <figure class="case__figure">
+        <img src="{{ '/images/2025-08-20-유레카 융합프로젝트/Readme-title.png' | relative_url }}" alt="IT:PLACE. 멤버십 혜택을 지도에서, 빠르고 간편하게">
+      </figure>
+      </div>
+
+      <div class="case__body">
+        <p>멤버십 혜택이 있어도 평균 이용률은 낮았습니다. 주변에 어떤 제휴처가 있고, 지금 받을 수 있는 혜택이 무엇인지 바로 확인하기 어려웠습니다.</p>
+        <p>목표는 사용자 위치에서 제휴처와 혜택을 찾고, 이용 기록과 질문으로 맞는 혜택을 추천하는 것이었습니다. 백엔드 팀장으로 지도 검색 API, 멤버십 추천, 질문 챗봇을 맡았습니다.</p>
+
+        <p class="case__stack">Java · Spring Boot · Spring Security · MySQL · Redis · MongoDB · Elasticsearch · OpenAI · AWS · Docker · GitHub Actions</p>
+
+        <p class="case__links">
+          <a href="https://github.com/ureca-itPlace/itplace-user-api" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://www.itplace.click/" target="_blank" rel="noopener noreferrer">서비스</a>
+          <a href="https://www.youtube.com/watch?v=rLGyvqAo5nQ" target="_blank" rel="noopener noreferrer">시연 영상</a>
+          <a href="https://www.canva.com/design/DAGu0Z7UfSQ/mnmqGLz8YHmUcCQHYcLEMA/edit" target="_blank" rel="noopener noreferrer">발표 자료</a>
+          {% if itplace_post %}
+          <a href="{{ itplace_post.url | relative_url }}">자세한 내용</a>
+          {% endif %}
+        </p>
+
+        <div class="case-board">
+          <section class="case-section">
+            <p class="case-section__no">01</p>
+            <div>
+              <h3>지도 검색 API</h3>
+              <div class="point">
+                <p class="point__line point__line--problem"><strong>문제</strong><span>부하가 걸리면 지도 메인이 멈춤</span></p>
+                <p class="point__detail">제휴처 조회에 N+1 쿼리가 있었고, 위도·경도 검색에 맞는 인덱스가 없었으며, 넓은 영역을 한 번에 읽고 있었습니다.</p>
+              </div>
+              <div class="point">
+                <p class="point__line point__line--solve"><strong>해결</strong><span>10×10 Grid와 인덱스 재설계</span></p>
+                <p class="point__detail">검색 영역을 나눠 한 번에 읽는 범위를 줄이고, 구간별 조회는 경량 비동기 처리로 분산했습니다. 위치 검색에 맞는 복합 인덱스도 다시 설계했습니다.</p>
+              </div>
+              <div class="point">
+                <p class="point__line point__line--result"><strong>성과</strong><span>TPS 16 → 482, 평균 응답 17,272ms → 1,032ms</span></p>
+                <p class="point__detail">쿼리만 고친 것이 아니라 조회 구조와 인덱스를 같이 맞춰, 부하가 걸린 지도 검색의 병목을 줄였습니다.</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="case-section">
+            <p class="case-section__no">02</p>
+            <div>
+              <h3>멤버십 추천</h3>
+              <div class="point">
+                <p class="point__line point__line--problem"><strong>문제</strong><span>이용 기록이 추천과 이유로 이어지지 않음</span></p>
+                <p class="point__detail">검색, 클릭, 혜택 이용 기록이 관심사로 쓰이지 않았습니다. 목록만 있으면 왜 이 제휴처인지 알기 어려웠고, 기록이 적은 사용자는 추천이 비어 있기 쉬웠습니다.</p>
+              </div>
+              <div class="point">
+                <p class="point__line point__line--solve"><strong>해결</strong><span>로그를 임베딩해 후보를 찾고 이유를 작성</span></p>
+                <p class="point__detail">행동 로그로 관심 프로필을 만들었습니다. 제휴처와 혜택 정보를 임베딩해 Elasticsearch 벡터 검색으로 후보를 뽑고, OpenAI로 성향에 맞춘 추천 이유를 작성했습니다.</p>
+              </div>
+              <div class="point">
+                <p class="point__line point__line--result"><strong>성과</strong><span>추천 제휴처와 이유를 함께 제공</span></p>
+                <p class="point__detail">행동 로그를 추천에 써서, 이용 기록이 적어도 추천이 비지 않도록 콜드 스타트를 완화했습니다.</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="case-section">
+            <p class="case-section__no">03</p>
+            <div>
+              <h3>질문 임베딩 챗봇</h3>
+              <div class="point">
+                <p class="point__line point__line--problem"><strong>문제</strong><span>질문마다 LLM을 호출하면 느리고 비용이 큼</span></p>
+                <p class="point__detail">원하는 혜택을 지도에서만 찾기 어려웠습니다. 모든 질문을 LLM으로 분류하면 응답이 느리고 호출 비용이 커졌고, 부적절한 질문은 추천으로 넘어가면 안 됐습니다.</p>
+              </div>
+              <div class="point">
+                <p class="point__line point__line--solve"><strong>해결</strong><span>비슷한 질문은 임베딩, 새 질문만 LLM</span></p>
+                <p class="point__detail">금칙어를 거른 뒤 질문을 임베딩했습니다. Elasticsearch KNN으로 비슷한 질문을 찾아 유사도 0.7 이상이면 저장된 카테고리를 쓰고, 그 미만이거나 결과가 없으면 LLM이 분류한 뒤 질문과 임베딩을 저장했습니다. 현재 위치 근처 제휴처를 조회해 추천 이유를 만들고, 대화는 세션이 유지되는 동안 이어 볼 수 있게 임시 저장했습니다.</p>
+              </div>
+              <div class="point">
+                <p class="point__line point__line--result"><strong>성과</strong><span>반복 질문은 검색으로, 신규 질문만 LLM으로 응답</span></p>
+                <p class="point__detail">비슷한 질문은 임베딩 검색으로 처리하고, 새로운 질문만 LLM에 넘겨 근처 제휴처와 이유를 응답했습니다.</p>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </article>
+    </div>
+  </div>
+</dialog>
