@@ -797,7 +797,7 @@ Bean으로 객체를 관리하는 이유는 애플리케이션의 설계, 확장
 
 #### 60. 스프링 트랜잭션 AOP 동작 흐름에 대해서 설명해주세요.
 
-`@Transactional`어노테이션을 사용한 선언적 트랜잭션 관리(Declarative Transaction Management)의 전체 흐름에는 크게 3가지 요소가 등장합니다. 트랜잭션 매니저, 트랜잭션 AOP 프록시, 트랜잭션 동기화 매니저가 이에 해당됩니다.
+@Transactional어노테이션을 사용한 선언적 트랜잭션 관리(Declarative Transaction Management)의 전체 흐름에는 크게 3가지 요소가 등장합니다. 트랜잭션 매니저, 트랜잭션 AOP 프록시, 트랜잭션 동기화 매니저가 이에 해당됩니다.
 
 클라이언트 코드로부터 요청이 들어오면 트랜잭션 AOP 프록시가 트랜잭션 매니저를 획득하고, 트랜잭션을 시작하기 위해서 트랜잭션 매니저에게 요청합니다. 트랜잭션 시작 요청 받은 트랜잭션 매니저는 데이터소스를 통해 커넥션을 받아오고 트랜잭션을 시작합니다. 그리고, 트랜잭션 매니저는 트랜잭션이 시작된 커넥션을 동기화 매니저에 보관합니다. 이후 트랜잭션이 종료되는 경우 트랜잭션 매니저는 트랜잭션 동기화 매니저에 보관한 커넥션을 가져와 트랜잭션을 종료하고 커넥션을 반환하거나 종료합니다.
 
@@ -815,7 +815,7 @@ Bean으로 객체를 관리하는 이유는 애플리케이션의 설계, 확장
 
 스프링에서 **트랜잭션 전파(Transaction Propagation)** 는 트랜잭션의 경계에서 이미 진행 중인 트랜잭션이 있을 때 또는 없을 때 어떻게 동작할 것인가를 결정하는 기능입니다.  `@Transactional` 어노테이션이 존재하는 메서드를 호출했을 때, 기존에 트랜잭션이 존재하면 재사용할지, 예외를 던질지 등 행동을 결정할 수 있습니다.
 
-트랜잭션 전파 속성에는 REQUIRED, REQUIRED_NEW, MANDATORY, SUPPORTS, NOT_SUPPORTED, NESTED, NEVER가 존재하며, `@Transactional` 어노테이션의 propagation 속성에 값을 설정할 수 있습니다.
+트랜잭션 전파 속성에는 REQUIRED, REQUIRED_NEW, MANDATORY, SUPPORTS, NOT_SUPPORTED, NESTED, NEVER가 존재하며, @Transactional 어노테이션의 propagation 속성에 값을 설정할 수 있습니다.
 
 **트랜잭션 전파 속성**
 
@@ -860,4 +860,4 @@ N + 1 쿼리 문제는 즉시 로딩과 지연 로딩 전략 각각의 상황에
 즉시 로딩에서 발생하는 이유는 JPQL을 사용하는 경우 전체 조회를 했을 때, 영속성 컨텍스트가 아닌 데이터베이스에서 직접 데이터를 조회한 다음 즉시로딩 전략이 동작하기 때문입니다.
 지연 로딩에서 발생하는 이유는 지연로딩 전략을 사용한 하위 엔티티를 로드할 때, JPA에서 프록시 엔티티를 unproxy 할 때 해당 엔티티를 조회하기 위한 추가적인 쿼리가 실행되어 발생합니다.
 
-해결 방법으로는 Fetch Join이라고 불리는 JPQL의 join fetch를 사용하는 방법이 있으며, 또 다른 방법으로는 `@EntityGraph`를 사용하는 방법, `@Fetch(FetchMode.SUBSELECT)`를 사용하는 방법, `@BatchSize`를 사용해 조절하거나 전역적인 batch-size를 설정하는 방법이 있습니다.
+해결 방법으로는 Fetch Join이라고 불리는 JPQL의 join fetch를 사용하는 방법이 있으며, 또 다른 방법으로는 @EntityGraph를 사용하는 방법, @Fetch(FetchMode.SUBSELECT)를 사용하는 방법, @BatchSize를 사용해 조절하거나 전역적인 batch-size를 설정하는 방법이 있습니다.
