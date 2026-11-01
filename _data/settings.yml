@@ -61,7 +61,7 @@ hero:
   enable: true
   hero_avatar: /images/profile.jpg
   hero_title: Hi! I’m Seunghyun 👋
-  hero_subtitle: 공부도 하고, 기록도 남기는 웹 개발자
+  hero_subtitle: 공부도 하고, 기록도 남기는 개발자
   hero_description: |
     This blog is my personal knowledge base on productivity, programming, and the freedom of information.
 
