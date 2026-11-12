@@ -4,6 +4,11 @@ title: Interview - Web
 description: 웹 개발 관련 면접 질문 정리
 permalink: /interview/web/
 interview_practice: true
+interview_order: 2
+interview_mark: Web
+interview_name: Web
+interview_summary: SSR, JWT, WAS
+interview_count: 7
 image: '/images/01.jpg'
 ---
 

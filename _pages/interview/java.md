@@ -4,6 +4,11 @@ title: Interview - Java
 description: Java 관련 면접 질문 정리
 permalink: /interview/java/
 interview_practice: true
+interview_order: 5
+interview_mark: Java
+interview_name: Java
+interview_summary: GC, 예외, 제네릭
+interview_count: 15
 image: '/images/01.jpg'
 ---
 

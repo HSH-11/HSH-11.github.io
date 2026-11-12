@@ -1,0 +1,22 @@
+{% assign topics = site.pages | where: "interview_practice", true | sort: "interview_order" %}
+{% if topics.size > 0 %}
+<section class="section section-interview" aria-labelledby="interview-home-title">
+  <div class="container">
+    <div class="section__head">
+      <h2 id="interview-home-title" class="section__title">AI 모의 면접</h2>
+    </div>
+    <p class="section-interview__lead">주제를 고르면 그 문항으로 답하고, 면접관이 힌트와 피드백을 줍니다.</p>
+    <div class="interview-board">
+      {% for topic in topics %}
+      <a class="interview-topic" href="{{ topic.url | relative_url }}">
+        <span class="interview-topic__top">
+          <span class="interview-topic__name">{{ topic.interview_name }}</span>
+          {% if topic.interview_count %}<span class="interview-topic__count">{{ topic.interview_count }}문항</span>{% endif %}
+        </span>
+        <span class="interview-topic__summary">{{ topic.interview_summary }}</span>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}

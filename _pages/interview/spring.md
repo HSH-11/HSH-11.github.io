@@ -4,6 +4,11 @@ title: Interview - Spring
 description: Spring 관련 면접 질문 정리
 permalink: /interview/spring/
 interview_practice: true
+interview_order: 6
+interview_mark: Spring
+interview_name: Spring
+interview_summary: IoC, AOP, 트랜잭션
+interview_count: 12
 image: '/images/Spring.png'
 ---
 

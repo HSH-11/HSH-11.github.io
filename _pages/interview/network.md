@@ -4,6 +4,11 @@ title: Interview - Network
 description: 네트워크 관련 면접 질문 정리
 permalink: /interview/network/
 interview_practice: true
+interview_order: 4
+interview_mark: Net
+interview_name: Network
+interview_summary: TCP, DNS, HTTP
+interview_count: 23
 image: '/images/01.jpg'
 ---
 

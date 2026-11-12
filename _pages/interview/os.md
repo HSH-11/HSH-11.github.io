@@ -4,6 +4,11 @@ title: Interview - OS
 description: 운영체제 관련 면접 질문 정리
 permalink: /interview/os/
 interview_practice: true
+interview_order: 1
+interview_mark: OS
+interview_name: OS
+interview_summary: 프로세스, 메모리, 교착 상태
+interview_count: 23
 image: '/images/01.jpg'
 ---
 

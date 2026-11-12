@@ -4,6 +4,11 @@ title: Interview - Database
 description: 데이터베이스 관련 면접 질문 정리
 permalink: /interview/database/
 interview_practice: true
+interview_order: 3
+interview_mark: DB
+interview_name: Database
+interview_summary: 트랜잭션, 인덱스, 락
+interview_count: 16
 image: '/images/01.jpg'
 ---
 
