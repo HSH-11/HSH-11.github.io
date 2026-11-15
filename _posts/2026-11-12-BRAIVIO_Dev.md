@@ -1,8 +1,8 @@
 ---
 layout: post
 title: BRAIVIO — 서로 다른 생각을 엮어, 하나의 결정을 만들다.
-description: Canvas-first 설계 · 실시간 협업 · Research→Vote→Decision
-image: '/images/'
+description: Board Snapshot · STOMP 실시간 · Spotlight 선점 · Kafka를 쓰지 않은 이유
+image: '/images/2026-11-12-BRAIVIO_Dev/브레이비오 협업 결정 캔버스.png'
 tags: [Project]
 tags_color: '#de47e2'
 featured: true
@@ -37,7 +37,15 @@ BRAIVIO의 중심은 **근거(Source/Evidence) → 후보(Candidate) → 투표(
 
 **핵심 사용자 흐름**
 
-Workspace 생성 → Sticky / Text로 아이디어 정리 → Source · Evidence · Candidate Card 배치 → Evidence ↔ Candidate 관계 연결 → 실시간 협업 · 댓글 · 리액션 → Vote Session → Decision 확정 (Snapshot 보존)
+```
+Workspace 생성 
+→ Sticky / Text로 아이디어 정리 
+→ Source · Evidence · Candidate Card 배치 
+→ Evidence ↔ Candidate 관계 연결 
+→ 실시간 협업 · 댓글 · 리액션 
+→ Vote Session 
+→ Decision 확정 (Snapshot 보존)
+```
 
 ------
 
@@ -83,9 +91,9 @@ MySQL (Flyway)                 Realtime
 
 ### 인증 · Workspace · 권한
 
-**세션 + CSRF를 선택한 이유**
+**세션 + CSRF를 선택한 이유 (JWT 미사용)**
 
-브라우저 SPA와 쿠키 기반 협업 보드라는 전제에서, 토큰을 JS에 두지 않는 **HttpOnly 세션 쿠키 + CSRF** 조합을 먼저 고정했습니다.  
+브라우저 SPA와 쿠키 기반 협업 보드라는 전제에서, **JWT/Bearer는 쓰지 않고** 토큰을 JS에 두지 않는 **HttpOnly 세션 쿠키 + CSRF** 조합을 먼저 고정했습니다.  
 WebSocket CONNECT에도 동일 CSRF를 검증해 REST와 실시간 채널의 인증 경로를 맞췄습니다.  
 (Kakao/Google OAuth용 identity 스키마는 준비만 하고, MVP에서는 로컬 이메일 가입·로그인만 구현)
 
@@ -176,22 +184,86 @@ Connector(직선/엘보)는 **시각적 연결**이며, Evidence↔Candidate의 
 
 ------
 
+### Board Snapshot — 전체 원본을 한 번에 읽는다
+
+실시간 협업을 이야기하기 전에, 먼저 **보드의 유효한 상태가 어디에 있는지**를 고정해야 했습니다.  
+BRAIVIO에서 Board Snapshot은 “이벤트 로그를 재생한 결과”가 아니라 **지금 서버가 인정하는 캔버스 전체 상태의 한 장짜리 복사본**입니다.
+
+**스냅샷에 들어가는 것**
+
+| 필드 | 내용 |
+|------|------|
+| workspaceId | 대상 공간 |
+| objects | soft-delete되지 않은 보드 객체 전부 (위치·크기·version·스타일·도메인 카드 요약) |
+| connections | 객체 간 연결선 |
+
+카드형 객체는 board_objects만으로는 부족합니다. Source/Evidence/Candidate/Vote/Decision의 **요약(reference)** 을 각 도메인 Provider가 채워, 클라이언트가 카드 UI를 바로 그릴 수 있게 합니다.
+
+**서버 흐름**
+
+1. READ 권한 검사  
+2. 살아 있는 board_objects 조회  
+3. 참조 ID별로 도메인 요약 일괄 조회  
+4. connections를 붙여 Snapshot 반환  
+
+API는 **GET /api/v1/workspaces/{id}/board** 한 번입니다.
+
+**프론트에서 스냅샷을 사용하는 시점**
+
+| 시점 | 역할 |
+|------|------|
+| 캔버스 진입 | Snapshot 1회 로드 → BoardWorkspace 초기 상태 |
+| 이후 일반 편집 | Query 자동 refetch로 덮지 않음 (로컬 + 실시간 이벤트가 주인) |
+| version 충돌 (409) | Snapshot 재조회로 서버 상태에 수렴 |
+| WebSocket 재연결 | 놓친 durable 이벤트를 메우기 위해 Snapshot 재조회 |
+| 드래그 중 | Snapshot 미사용. Ghost만 보내고, 손 뗄 때 REST로 최종 위치 저장 |
+
+**유효한 상태는 항상 REST(스냅샷/객체 API)** 이고, 실시간은 “누가 바꿨는지 빨리 알려 주는 층”입니다.  
+이벤트를 몇 개 놓쳐도 Snapshot만 다시 받으면 보드가 복구됩니다.
+
+------
+
 ### 실시간 협업 — Durable vs Volatile
 
 실시간 계층을 한 채널에 섞지 않고, 성격이 다른 두 갈래로 나눴습니다.
 
 | 구분 | 예시 | 저장 | 전달 |
 |------|------|------|------|
-| **Durable** | 객체 CRUD, 연결선, 댓글, 리액션, 플레이리스트 | MySQL | REST 커밋 후 board 토픽 |
+| **Durable** | 객체 CRUD, 연결선, 댓글, 리액션, 플레이리스트, 멤버 변경 | MySQL | REST 커밋 후 board 토픽 |
 | **Volatile** | Presence, 커서, 드래그 프리뷰, 회의 타이머/Spotlight | 인메모리 | presence 토픽 |
 
 **왜 이렇게 나눴는가**
 
-- 드래그 중 좌표를 매번 DB에 쓰면 부하와 충돌이 커집니다.  
+- 드래그 중 좌표를 매번 DB에 쓰면 부하와 version 충돌이 커집니다.  
   → 드래그는 Preview만 보내고, **손 뗄 때 REST로 최종 좌표 저장**
 - WebSocket이 끊겨도 REST로 조회·수정이 가능해야 합니다.  
   → 재접속 시 Board Snapshot으로 복구
-- MVP는 **단일 서버 Simple Broker**. Redis Pub/Sub 다중 인스턴스 확장은 P1로 남겨 두었습니다.
+- MVP는 **단일 서버 STOMP Simple Broker**. Redis Pub/Sub 다중 인스턴스 확장은 P1로 남겨 두었습니다.
+
+**STOMP 채널 구조**
+
+```text
+브라우저 ──► /ws  (세션 쿠키 + CSRF)
+  클라 → 서버:  /app/workspaces/{id}/presence|cursor|drag-preview|meeting
+  서버 → 클라:  /topic/workspaces/{id}/board      (durable)
+                /topic/workspaces/{id}/presence   (volatile)
+                /user/queue/errors                 (개인 에러, 예: Spotlight BUSY)
+```
+
+**STOMP 연결은 어떻게 붙는가**
+
+JWT로 소켓을 여는 방식이 아니라, REST와 같은 **세션 + CSRF**로 연결합니다.
+
+| 단계 | 담당 | 내용 |
+|------|------|------|
+| 1. Handshake | `/ws` + CsrfCapturingHandshakeInterceptor | `XSRF-TOKEN` 쿠키를 세션 attribute에 보관, Origin 검사 |
+| 2. CONNECT | RealtimeChannelInterceptor | 로그인 Principal 확인 + `X-XSRF-TOKEN`이 Handshake 값과 일치하는지 검증 |
+| 3. SUBSCRIBE | 동일 Interceptor | `/topic/.../board\|presence`만 허용, Workspace READ 권한 |
+| 4. SEND | 동일 Interceptor | `/app/.../cursor\|drag-preview\|presence\|meeting`만 허용, 권한 + rate limit |
+| 5. 처리 | RealtimeController | Ping·커서·드래그·Meeting을 presence 토픽으로 브로드캐스트 |
+
+브로커는 MVP에서 **인프로세스 Simple Broker**(`/topic`, `/queue`)이고, Heartbeat 10초로 연결 생존을 확인합니다.  
+프론트는 연결 전 CSRF를 읽어 CONNECT 헤더에 넣고, board/presence를 구독한 뒤 presence Ping으로 입장합니다.
 
 **Presence · 커서 · 드래그**
 
@@ -204,6 +276,124 @@ Connector(직선/엘보)는 **시각적 연결**이며, Evidence↔Candidate의 
 
 프론트는 접속자 아바타, 원격 커서, 선택 하이라이트, Follow(아바타 클릭으로 시선 추적), 연결 상태 배너(connected / reconnecting / offline)를 제공합니다.
 
+**한 장면으로 이어 보기**
+
+A가 Sticky를 만들고 B가 같은 보드를 볼 때:
+
+```text
+[A] REST POST /board/objects
+      └─ TX: INSERT + WorkspaceEvent(OBJECT_CREATED) 발행
+            └─ Commit 성공
+                  └─ DurableEventBroadcaster → STOMP board 토픽
+
+[B] board 토픽 구독 중
+      └─ OBJECT_CREATED 수신 → 로컬 객체 목록에 Sticky 반영
+```
+
+A가 객체를 드래그 중일 때:
+
+```text
+[A] WS drag-preview (약 15Hz)  →  [B] Ghost만 표시
+[A] 마우스 업 → REST position + version
+      └─ Commit 후 OBJECT_MOVED →  [B] 최종 좌표 확정, Ghost 제거
+```
+
+------
+
+### 이벤트 발행과 구독 — Commit Before Broadcast
+
+외부 메시지 버스 없이도 “발행/구독”은 분명히 있습니다.  
+다만 형태가 **앱 내부 Spring 이벤트 + STOMP 토픽**입니다.
+
+**1) 발행 (Publish) — Application Service**
+
+보드·댓글·투표·플레이리스트·멤버 등 쓰기 유스케이스가 트랜잭션 안에서 WorkspaceEvent를 발행합니다.
+
+```text
+BoardServiceImpl.create / update / move / delete
+  → events.publishEvent(WorkspaceEvent.of(workspaceId, "OBJECT_...", actorId, payload))
+```
+
+WorkspaceEvent는 eventId, workspaceId, type, actorId, occurredAt, payload를 담는 영속 변경 알림의 소스입니다.  
+이 시점에서는 아직 클라이언트에게 보내지 않습니다. **DB 커밋이 성공해야만** 밖으로 나갑니다.
+
+**2) 서버 내부 구독 — DurableEventBroadcaster**
+
+Realtime 모듈의 리스너가 WorkspaceEvent를 구독합니다.
+
+- **@TransactionalEventListener** 사용 → **커밋 성공 후에만** 실행  
+- 롤백되면 브로드캐스트도 없음 (**Commit Before Broadcast**)  
+- RealtimeEnvelope로 감싼 뒤 **/topic/workspaces/{id}/board** 로 convertAndSend  
+
+같은 패턴의 다른 리스너도 있습니다.
+
+| 리스너 | 구독 이벤트 | 하는 일 |
+|--------|-------------|---------|
+| DurableEventBroadcaster | WorkspaceEvent | 참여자에게 durable 알림 |
+| SourceMetadataWorker | SourceRegisteredEvent | 커밋 후 URL 메타 비동기 fetch |
+| PresenceService | WorkspaceMemberRemovedEvent | 강퇴 대상 소켓 정리 (MEMBER_REMOVED 브로드캐스트 이후) |
+
+**3) 프론트 구독 — useRealtime**
+
+캔버스 진입 후 STOMP 연결이 되면:
+
+1. **board 토픽** 구독 → durable 이벤트를 onDurableEvent로 전달  
+2. **presence 토픽** 구독 → 커서·Ghost·Presence·Meeting  
+3. **presence Ping** publish → JOIN + (활성 중이면) Meeting 상태 재푸시  
+
+durable 타입별 프론트 처리 예:
+
+| 이벤트 | 동작 |
+|--------|------|
+| OBJECT_CREATED / UPDATED / MOVED | 로컬 객체 패치 |
+| OBJECT_DELETED | 로컬에서 제거 |
+| REFERENCE_UPDATED | 카드 요약 갱신 (투표는 본인 표 재조회) |
+| CONNECTION_* | 엣지 목록 갱신 |
+| COMMENT_* / REACTION_* | 스레드·카운트 갱신 |
+| MEMBER_REMOVED (나) | 홈으로 이동 + 재연결 루프 차단 |
+| 재연결 성공 | Snapshot 재조회로 놓친 이벤트 복구 |
+
+**설계상 중요한 분리**
+
+- 이벤트는 **알림**이지 원본이 아니다  
+- 원본은 MySQL + Snapshot/객체 REST  
+- 그래서 브로드캐스트가 실패하거나 클라이언트가 놓쳐도 Snapshot으로 수렴 가능하다  
+
+------
+
+### 왜 Kafka를 쓰지 않았는가
+
+실시간·이벤트를 설계할 때 Kafka를 후보로 두지 않은 것은 “모른다”가 아니라 **이 제품의 문제가 Kafka가 풀기에 맞는 문제가 아니었기 때문**입니다.
+
+**전달해야 할 것**
+
+1. Durable: DB에 이미 저장된 변경을 **같은 Workspace에 붙어 있는 소수 브라우저**에 알림  
+2. Volatile: 커서·드래그·Spotlight처럼 **저장하지 않는** 짧은 상태  
+
+서비스 간 비동기 파이프라인, 장기 감사 로그 재생, 대량 컨슈머 팬아웃이 목표가 아닙니다.
+
+| Kafka가 강한 지점 | BRAIVIO MVP |
+|------------------|-------------|
+| 여러 마이크로서비스 간 이벤트 | Modular Monolith 하나 |
+| 장기 보관·재생·재처리 | 진실은 MySQL + Board Snapshot |
+| 높은 처리량·파티션 확장 | 보드당 동시 편집자 소수 |
+| 장애 격리·백프레셔 | 단일 서버 + Simple Broker면 충분 |
+
+브라우저까지 가려면 결국 WebSocket이 필요합니다.  
+Kafka를 넣어도 **Kafka → 앱 서버 → STOMP** 한 단이 더 생기고, MVP 복잡도만 커집니다.
+
+**실제로 고른 스택**
+
+```text
+쓰기 TX 안: Spring WorkspaceEvent 발행
+     ↓ Commit
+DurableEventBroadcaster → STOMP Simple Broker → 구독 중인 브라우저
+(유실·재접속) → Board Snapshot 재조회
+```
+
+수평 확장이 필요해지면 **1단계는 Redis Pub/Sub**(다중 인스턴스 Presence/이벤트 중계)로 문서에 남겨 두었습니다.  
+Kafka는 그다음, 예를 들어 알림·검색 인덱싱·감사 파이프라인처럼 **다른 서비스가 보드 변경을 비동기로 소비**해야 할 때 다시 검토할 대상입니다.
+
 ------
 
 ### Meeting 타이머와 Spotlight
@@ -215,25 +405,106 @@ Connector(직선/엘보)는 **시각적 연결**이며, Evidence↔Candidate의 
 
 - 상태: 시작 → 일시정지 → 재개 → 종료
 - 서버는 **남은 ms만** 뿌리지 않고 **절대 종료 시각(endsAt)** 을 브로드캐스트
-- 클라이언트는 로컬 틱으로 카운트다운 → 기기 간 시계 오차를 줄이는 방식
-- DB/Snapshot에 넣지 않는 **휘발 상태**. 서버 재시작 시 타이머는 사라짐
+- 클라이언트는 로컬 틱(250ms)으로 카운트다운 → 기기 간 시계 오차를 줄이는 방식
+- DB/Board Snapshot에 넣지 않는 **휘발 상태**. 서버 재시작 시 타이머는 사라짐
 - 편집 권한이 있는 멤버만 제어, VIEWER는 조회만
 
-**Spotlight — “지금 여기를 보라”**
+------
 
-Spotlight는 진행자가 선택 객체(또는 좌표)를 선언하면, 다른 참여자 뷰포트가 그 지점으로 부드럽게 따라가는 **시선 공유** 기능입니다.
+### Spotlight 기술 구현 — 시선 공유를 서버 상태로
 
-| 항목 | 설계 |
+**문제 정의**
+
+초기에는 아바타를 눌러 커서를 따라가는 **Follow**만으로도 “같이 보기”가 된다고 봤습니다.  
+하지만 회의에서는 진행자가 바뀌고, 두 사람이 동시에 “나를 보라”고 눌러 시선이 갈라질 수 있습니다.  
+그래서 Follow(개인이 선택하는 추적)와 별도로, **서버가 단 한 명의 진행자를 소유하는 Spotlight**를 만들었습니다.
+
+Spotlight의 UX 한 줄:
+
+> 진행자가 선택 객체(또는 좌표)를 선언하면, 다른 참여자 뷰포트가 그 지점으로 부드럽게 따라가고 대상 카드가 하이라이트된다.
+
+**저장하지 않는 이유**
+
+Spotlight는 보드의 영속 데이터가 아닙니다.  
+Board Snapshot/MySQL에 넣지 않고, Workspace별 **인메모리 MeetingState**에만 둡니다.
+
+| 필드 | 의미 |
 |------|------|
-| 선점 | 비어 있거나 본인 점유일 때 EDITOR가 ON |
-| 충돌 | 타인이 이미 켜 두면 BUSY. OWNER만 force로 인수(확인 UI) |
-| 해제 | 본인 또는 OWNER |
-| 팔로워 | 진행자 선택/좌표로 뷰 센터 이동, 대상 카드 하이라이트 |
-| 우선순위 | 아바타 Follow가 켜져 있으면 Spotlight보다 Follow 우선. 수동 팬/Esc로 Follow 해제 |
-| 세션 | sessionId 단위로 소유. 강제 인수 후 구 세션의 UPDATE는 무시 |
+| spotlightMemberId | 진행자 회원 |
+| spotlightSessionId | 진행자 탭(같은 회원 다중 탭 구분) |
+| spotlightNickname | BUSY 안내용 표시 이름 |
+| spotlightObjectId | 따라갈 카드 (있으면 카드 중심) |
+| spotlightX / Y | 카드가 없을 때 월드 좌표 |
 
-초기에는 커서 Follow만으로도 충분하다고 봤지만, 회의 중 “진행자가 가리키는 카드”를 전원에게 고정하려면 **서버가 단일 진행자를 소유하는 상태**가 필요했습니다.  
-그래서 Presence와 같은 휘발 채널 위에 MeetingStateRegistry를 두고, 타이머·Spotlight를 한 스냅샷으로 재입장자에게만(활동 중일 때) 다시 밀어 주도록 만들었습니다.
+서버 재시작·빈 인스턴스면 Spotlight는 사라지고, 다시 ON하면 됩니다.  
+“지금 회의 진행”용 휘발 상태라서 Snapshot 복구 대상이 아닙니다.
+
+**메시지 경로**
+
+```text
+[진행자 UI]
+  → STOMP /app/workspaces/{id}/meeting
+       action: SPOTLIGHT_ON | UPDATE | OFF
+  → MeetingService.apply (EDIT_BOARD 권한 검사)
+  → MeetingStateRegistry에 상태 반영
+  → /topic/.../presence 로 MEETING_STATE 브로드캐스트
+
+[다른 참여자]
+  → useRealtime presence 구독
+  → onMeetingEvent → useMeeting.apply
+  → BoardWorkspace가 setCenter + 카드 하이라이트
+```
+
+보드 durable 토픽이 아니라 **presence(휘발) 토픽**을 쓰는 것도 의도입니다.  
+객체 CRUD와 시선 상태를 같은 채널에 섞지 않기 위함입니다.
+
+**선점 · 충돌 · 인수 규칙**
+
+서버 MeetingService.spotlightOn이 단일 레지스트리에서 직렬화합니다.
+
+| 상황 | 동작 |
+|------|------|
+| 비어 있음 | EDITOR가 ON → 진행자 됨 |
+| 같은 memberId 재개 | 허용 (탭 재연결·토글 시 자기 자신에 BUSY 방지) |
+| 다른 사람이 점유 | EDITOR는 **SpotlightBusyException** → /user/queue/errors 로 SPOTLIGHT_BUSY |
+| OWNER + force=true | 확인 UI 후 강제 인수 |
+| OFF | 본인 또는 OWNER만 |
+| UPDATE | **본인 sessionId**와 일치할 때만 반영. 강제 인수 후 구 세션의 UPDATE는 무시 |
+
+이렇게 해야 “진행자가 둘”이 되지 않고, 강탈 후에도 이전 탭이 상태를 덮어쓰지 않습니다.
+
+**프론트 시선 동기**
+
+1. 내가 진행자가 아니면 spotlightObjectId의 노드 중심(또는 x/y)으로 **setCenter(duration ≈ 280ms)**  
+2. 대상 카드에 spotlight 아웃라인 표시  
+3. 진행자 본인은 선택 변경·포인터 이동 시 **SPOTLIGHT_UPDATE**로 좌표/객체 갱신  
+4. spotlightLocal 플래그로 낙관적 UI를 유지하고, 타인이 인수하면 로컬 플래그를 해제  
+
+**Follow와의 우선순위**
+
+| 모드 | 성격 |
+|------|------|
+| Follow | 내가 고른 참여자 커서를 추적 (개인 선택) |
+| Spotlight | 서버가 정한 진행자를 전원이 따름 (회의 진행) |
+
+Follow가 켜져 있으면 Spotlight보다 **Follow가 우선**합니다.  
+수동 팬이나 Esc로 Follow를 끄면 다시 Spotlight 시선을 따릅니다.  
+두 축을 합치지 않은 이유는, “개인적으로 누구를 볼지”와 “회의에서 공적으로 어디를 볼지”를 분리하기 위해서입니다.
+
+**재입장 시**
+
+Presence Ping 때 MeetingService.pushSnapshot이 호출됩니다.  
+타이머나 Spotlight가 **실제로 활성일 때만** MEETING_STATE를 다시 밀어, 빈 상태로 Presence 채널을 시끄럽게 만들지 않습니다.
+
+**트러블슈팅에서 다듬은 점**
+
+- 이중 선점 → 서버 단일 상태 + BUSY / OWNER force  
+- 같은 회원 재연결 시 자기 busy → “본인 재개” 허용  
+- 강제 인수 후 구 탭 UPDATE → sessionId 일치 검사로 무시  
+- Follow만으로 부족했던 UX → 서버 권위형 Spotlight로 확장  
+
+결과적으로 Spotlight는 CRDT도, Board Snapshot도 아닌 **회의용 휘발 Presence 상태**로,  
+권한·선점·시선 동기만 서버가 권위를 갖는 얇은 실시간 기능입니다.
 
 ------
 
@@ -355,7 +626,11 @@ BRAIVIO 개발에서 중요하게 본 것은 라이브러리 사용 여부보다
 - 제품 경계를 Canvas-first 의사결정으로 고정하고
 - 데이터 경계를 Presentation(board_objects)과 Domain(Research/Vote/Decision)으로 나누고
 - 통신 경계를 REST(영속)과 WebSocket(이벤트/Presence/Meeting)으로 나누고
-- 동시성 경계를 version 충돌 + Snapshot 복구로 단순화했습니다.
+- 이벤트 경계를 Spring TX 이벤트(발행) + Commit-after broadcast(구독 전달)로 단순화하고
+- 동시성 경계를 version 충돌 + **Board Snapshot 복구**로 닫았습니다.
+
+Kafka 없이 실시간 협업이 가능한 이유도 같습니다.  
+**원본은 DB와 Snapshot**이고, 이벤트는 알림일 뿐이며, 브라우저까지의 마지막 구간은 STOMP면 충분했습니다.
 
 그 결과, 프론트는 카드와 협업 UX에 집중하고, 백엔드는 권한·규칙·영속·브로드캐스트에 집중하는 구조가 되었습니다.
 
